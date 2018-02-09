@@ -6,6 +6,7 @@ from flask_admin.contrib.sqla import ModelView
 from models import User, Question
 
 app = Flask(__name__)
+app.secret_key = "super secret key"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
