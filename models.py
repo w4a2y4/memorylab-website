@@ -1,17 +1,18 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from main import db
+
+db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True)
+    name = db.Column(db.String(80), unique=True, default='')
     questions = db.relationship(
         'Question',
-        backref='user', # ref 可以讓我們使用 Question.user 進行對 User 操作
-        lazy='dynamic' # 有使用才載入，提昇效能
+        backref='user',
+        lazy='dynamic'
     )
 
-    def __init__(self, name):
+    def __init__(self, name=''):
         self.name = name
 
     def __repr__(self):
@@ -20,11 +21,11 @@ class User(db.Model):
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(80))
-    picture_url = db.Column(db.String(80))
+    description = db.Column(db.String(80), default='')
+    picture_url = db.Column(db.String(80), default='')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, description, picture_url):
+    def __init__(self, description='', picture_url=''):
         self.description = description
         self.picture_url = picture_url
 
