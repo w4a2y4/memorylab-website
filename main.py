@@ -1,4 +1,4 @@
-from flask import Flask, Response, redirect, render_template
+from flask import Flask, Response, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_basicauth import BasicAuth
 from flask_admin import Admin, BaseView, expose
@@ -32,33 +32,15 @@ class AuthException(HTTPException):
             {'WWW-Authenticate': 'Basic realm="Login Required"'}
         ))
 
-
-from models import User, Question, db
-
 # add Admin modelview
+from models import User, Question, db
 admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Question, db.session))
 
-# home page
-@app.route('/')
-def index():
-    return render_template('index.html')
 
-# the list of chracter
-@app.route('/characters')
-def characters():
-    return render_template('characters.html',Users = User.query.all())
-
-# each character
-@app.route('/characters/<userid>')
-def character(userid):
-    return render_template('character.html',Users = User.query.all(), Quess=Question.query.all(), userid=userid )
-
-# team
-@app.route('/team')
-def others():
-    return render_template('team.html')
+# Import the views module
+from views import *
 
 
 if __name__ == '__main__':
