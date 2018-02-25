@@ -8,6 +8,12 @@ def index():
     return render_template('index.html')
 
 
+# flow
+@app.route('/flow')
+def flow():
+    return render_template('flow.html')
+
+
 # the list of chracters
 @app.route('/characters')
 def characters():
