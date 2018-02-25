@@ -7,6 +7,19 @@
     <title>記憶實驗所-人格重曝</title>
 </head>
 <body>
-    <a>Hello,{{username}}!</a>
+    <p>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Link</th>
+        </tr><br>
+        {% for user in users%}
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td><a href="characters/{{user.id}}">gogo</a></td>
+        </tr><br>
+        {% endfor %}
+    </p>
 </body>
 </html>

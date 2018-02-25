@@ -7,17 +7,32 @@ from models import User, Question
 def index():
     return render_template('index.html')
 
-# the list of chracter
+
+# the list of chracters
 @app.route('/characters')
 def characters():
-    return render_template('characters.html',Users = User.query.all())
+
+    users = User.query.all()
+
+    return render_template('characters.html',
+                            users=users)
+
 
 # each character
-@app.route('/characters/<userid>')
-def character(userid):
-    return render_template('character.html',Users = User.query.all(), Quess=Question.query.all(), userid=userid )
+@app.route('/characters/<int:user_id>')
+def character(user_id):
+
+    user = User.query.get_or_404(user_id)
+    name = user.name
+    questions = user.questions.all()
+
+    return render_template('character.html',
+                           user=user,
+                           name=name,
+                           questions=questions)
+
 
 # team
 @app.route('/team')
-def others():
+def team():
     return render_template('team.html')
