@@ -40,18 +40,26 @@ admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Question, db.session))
 
-
+# home page
 @app.route('/')
 def index():
-    return render_template('index.html', Users = User.query.all(),Quess=Question.query.all() )
+    return render_template('index.html')
 
-@app.route('/test/<username>')
-def test(username):
-    return render_template('test.html',Users = User.query.all(), Quess=Question.query.all(), username=username )
+# the list of chracter
+@app.route('/characters')
+def characters():
+    return render_template('characters.html',Users = User.query.all())
 
-@app.route('/others')
+# each character
+@app.route('/characters/<userid>')
+def character(userid):
+    return render_template('character.html',Users = User.query.all(), Quess=Question.query.all(), userid=userid )
+
+# team
+@app.route('/team')
 def others():
-    return render_template('others.html',Users = User.query.all(), Quess=Question.query.all() )
+    return render_template('team.html')
+
 
 if __name__ == '__main__':
     db.app = app
