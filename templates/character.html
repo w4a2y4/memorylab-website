@@ -7,6 +7,24 @@
     <title>記憶實驗所-人格重曝</title>
 </head>
 <body>
-    <a>Hello,{{name}}!</a>
+    <p>記憶實驗所</p>
+    <div class="toolbar">
+        <a href="./team">關於我們</a>
+        <a href="./flow">實驗流程</a>
+        <a href="./characters">人格重曝</a><br>
+    </div>
+    <div class="nowpos"><a>首頁 > 人格重曝({{name}})</a><br></div>
+    <div class="buttons">
+        <button type="button" onclick="document.getElementById('ex_start').style.display='inline';
+        document.getElementById('ex_history').style.display='none';">實驗初始</button>
+        <button type="button" onclick="document.getElementById('ex_start').style.display='none';
+        document.getElementById('ex_history').style.display='inline';">實驗歷史</button>       
+    </div>
+    <div id="ex_start">
+        <p>初始</p>
+    </div>
+    <div id="ex_history">
+        <p>歷史</p>
+    </div>
 </body>
 </html>
