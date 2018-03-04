@@ -23,19 +23,37 @@
         </div>
     </div>
 
-    <p>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Link</th>
-        </tr><br>
+    <div id="description">
+        <p>
+        接半確在，造有安意許相，<br/>
+        留果開熱他媽正所流我二中公輕布人出以實一式實了研感有活外聽給他美很吸治到香檢：<br/>
+        去知生價小青劇我生：一無古大夫應至文站長……馬區的無狀負的每們計。<br/>
+        動北指係廣事？人委色那他已間報可們共什幾愛這升親整園年中！<br/>
+        進問取，外人樣言作進！<br/>
+        <br/>
+        做切去我風種遠資難招北代是間；<br/>
+        器市注理事天化面能提共法於密從事外點道手由教家麼往到像點。<br/>
+        麼每就：時力無年光的日腦，義的待？<br/>
+        體使學節飛只又於三靜子人於能教及。<br/>
+        <br/>
+        接半確在，造有安意許相，<br/>
+        留果開熱他媽正所流我二中公輕布人出以實一式實了研感有活外聽給他美很吸治到香檢：<br/>
+        去知生價小青劇我生：一無古大夫應至文站長……馬區的無狀負的每們計。<br/>
+        動北指係廣事？人委色那他已間報可們共什幾愛這升親整園年中！<br/>
+        進問取，外人樣言作進！<br/>
+        </p>
+        <h2></h2>
+    </div>
+
+    <div id="characters">
         {% for user in users%}
-        <tr>
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td><a href="characters/{{user.id}}">gogo</a></td>
-        </tr><br>
+        <div class="user" 
+             onclick="window.location='characters/{{user.id}}';"
+             style="background-image:url()">
+            <h3>{{user.name}}</h3>
+        </div>
         {% endfor %}
-    </p>
+    </div>
+
 </body>
 </html>
