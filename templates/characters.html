@@ -7,19 +7,48 @@
     <title>記憶實驗所-人格重曝</title>
 </head>
 <body>
-    <p>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Link</th>
-        </tr><br>
+
+    <div id="header">
+        <div id="nav">
+            <div><img src="./static/search.png"></div>
+            <div><img src="./static/facebook.png"></div>
+        </div>
+        <div id="logo">
+            <img src="./static/logo.png" width="100%">
+        </div>
+        <div id="links">
+            <div><a href="./flow"> [ 實驗流程 ] </a></div>
+            <div><a href="./characters"> [ 人格重曝 ] </a></div>
+            <div><a href="./team"> [ 關於我們 ] </a></div>
+        </div>
+    </div>
+
+    <div id="description">
+        訪問之後，除了文字的傳遞以外，<br>
+        還有什麼方法可以讓這些意念更加深入地傳至觀看者心理？<br>
+        有沒有一種作法能夠讓觀者一同經歷訪問誕生的過程，<br>
+        甚至影響訪問產出的結果呢？<br><br>
+
+        因此我們決定將訪問的一部分開放，<br>
+        讓參與活動的受測者經過一定的程序後進行回答，<br>
+        並以此作為基準進行換位思考，<br>
+        藉此理解對方的想法是什麼樣的程度。<br><br>
+
+        我們認為這樣子的過程就像是將人格進行重曝，<br>
+        把每個人的意念都放入原本的人格中進行延展，<br>
+        賦予它不一樣的面貌。<br>
+    </div>
+
+    <div id="characters">
+        <h2>基礎人格</h2>
         {% for user in users%}
-        <tr>
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td><a href="characters/{{user.id}}">gogo</a></td>
-        </tr><br>
+        <div class="user" 
+             onclick="window.location='characters/{{user.id}}';"
+             style="background-image:url()">
+            <h3>{{user.name}}</h3>
+        </div>
         {% endfor %}
-    </p>
+    </div>
+
 </body>
 </html>

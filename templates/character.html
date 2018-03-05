@@ -7,6 +7,49 @@
     <title>記憶實驗所-人格重曝</title>
 </head>
 <body>
-    <a>Hello,{{name}}!</a>
+
+    <div id="header">
+        <div id="nav">
+            <div><img src="./../static/search.png"></div>
+            <div><img src="./../static/facebook.png"></div>
+        </div>
+        <div id="logo">
+            <img src="./../static/logo.png" width="100%">
+        </div>
+        <div id="links">
+            <div><a href="./../flow"> [ 實驗流程 ] </a></div>
+            <div><a href="./../characters"> [ 人格重曝 ] </a></div>
+            <div><a href="./../team"> [ 關於我們 ] </a></div>
+        </div>
+    </div>
+
+    <!-- 解鎖前要隱藏的部分 -->
+    <div id="toHide">
+        <div id="profile">
+            <img src="">
+        </div>
+        <div id="info">
+            <h2>{{name}}</h2>
+            <p>這個人ㄉ介紹</p>
+        </div>
+    </div>
+
+    <!-- 實驗初始 -->
+    <div id="initial"></div>
+
+    <!-- 分隔線 -->
+    <div id="divider"></div>
+
+    <!-- 實驗歷史 -->
+    <div id="history">
+        {% for q in questions%}
+        <img src="{{q.picture_url}}">
+        <div class="question">
+            <h2>Q{{q.id}}.</h2>
+            <p>{{q.description}}</p>
+        </div>
+        {% endfor %}
+    </div>
+
 </body>
 </html>
