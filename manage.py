@@ -10,7 +10,7 @@ manager.add_command('runserver', Server())
 
 @manager.shell
 def make_shell_context():
-    return dict(app=app, db=db, User=User, Question=Question)
+    return dict(app=app, db=db, User=User, Question=Question, Team=Team)
 
 if __name__ == '__main__':
     manager.run()

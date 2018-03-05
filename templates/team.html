@@ -23,6 +23,64 @@
         </div>
     </div>
 
-    <a>團隊介紹</a>
+    <h2>團隊介紹</h2>
+
+    <div class="buttons">
+        <button type="button" onclick="document.getElementById('boss').style.display='inline';
+        document.getElementById('it').style.display='inline';
+        document.getElementById('twoD').style.display='inline';
+        document.getElementById('threeD').style.display='inline';">
+        全部</button>
+
+        <button type="button" onclick="document.getElementById('boss').style.display='inline';
+        document.getElementById('it').style.display='none';
+        document.getElementById('twoD').style.display='none';
+        document.getElementById('threeD').style.display='none';">
+        幹部</button>
+        
+        <button type="button" onclick="document.getElementById('boss').style.display='none';
+        document.getElementById('it').style.display='inline';
+        document.getElementById('twoD').style.display='none';
+        document.getElementById('threeD').style.display='none';">
+        程式設計</button>
+
+        <button type="button" onclick="document.getElementById('boss').style.display='none';
+        document.getElementById('it').style.display='none';
+        document.getElementById('twoD').style.display='inline';
+        document.getElementById('threeD').style.display='none';">
+        平面組</button>
+
+        <button type="button" onclick="document.getElementById('boss').style.display='none';
+        document.getElementById('it').style.display='none';
+        document.getElementById('twoD').style.display='none';
+        document.getElementById('threeD').style.display='inline';">
+        裝置組</button><br>
+    </div>
+
+    <div id="boss">
+        boss<br>
+        {% for person in boss %}
+            <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a> <a>{{person.text}}</a><br>
+        {% endfor %}
+    </div>
+    <div id="it">
+        it<br>
+        {% for person in it %}
+            <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a> <a>{{person.text}}</a><br>
+        {% endfor %}
+    </div>
+    <div id="twoD">
+        twoD<br>
+        {% for person in twoD %}
+            <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a> <a>{{person.text}}</a><br>
+        {% endfor %}
+    </div>
+    <div id="threeD">
+        threeD<br>
+        {% for person in threeD %}
+            <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a> <a>{{person.text}}</a><br>
+        {% endfor %}
+    </div>
+
 </body>
 </html>

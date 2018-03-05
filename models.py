@@ -31,3 +31,19 @@ class Question(db.Model):
 
     def __repr__(self):
         return '<Question %r %r>' % ( self.description, self.picture_url)
+
+class Team(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), default='')
+    picture_url = db.Column(db.String(200), default='')
+    text = db.Column(db.String(200), default='')
+    type_num=db.Column(db.Integer,default=0)
+
+    def __init__(self, name='',picture_url='',text='',type_num=0):
+        self.name=name
+        self.picture_url=picture_url
+        self.text=text
+        self.type_num=type_num
+
+    def __repr__(self):
+        return '<Team %r %r %r %r>' % (self.name ,self.text,self.picture_url,self.type_num)
