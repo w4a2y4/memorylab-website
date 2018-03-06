@@ -1,0 +1,18 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1F2020;
+    text-align: center;
+}
+
+h2 {
+    color: #9DC394;
+}
+
+p {
+    color: #FFFFFF;
+}
