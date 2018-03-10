@@ -4,12 +4,23 @@
     box-sizing: border-box;
 }
 
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-P-Bold.ttf);
+}
+@font-face {
+    font-family: "柔源P";
+    src: url(GenJyuuGothic-Bold.ttf);
+}
+
 body {
     background: #1F2020;
     text-align: center;
 }
 
 h2 {
+    font-family: "柔源P";
     color: #9DC394;
 }
 
