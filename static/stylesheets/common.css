@@ -1,7 +1,10 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    font-family:'Noto Sans TC',sans-serif;
 }
 
 body {
@@ -16,3 +19,31 @@ h2 {
 p {
     color: #FFFFFF;
 }
+#nav{
+    text-align: right;
+}
+#nav img{
+    height: 20px;
+}
+
+#logo{
+    width:80vw;
+    margin: auto;
+    margin-top: 10vh;
+}
+
+#links a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    margin-left:100px;
+    margin-right: 100px;
+}
+#links{
+    margin-top: 100px;
+    margin-bottom: 80px;
+}
+
+#header_text{
+    margin-bottom: 100px;
+}
+
