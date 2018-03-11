@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./../static/stylesheets/common.css">
     <link rel="stylesheet" type="text/css" href="./../static/stylesheets/character.css">
     <title>記憶實驗所 - 人格重曝</title>
 </head>
 <body>
+
+    <div id="fixed_head">
+        <div id="mem-lab">
+            <img src="./static/img/logo.png">
+        </div>
+        <div><a href="./flow"> [ 實驗流程 ] </a></div>
+        <div><a href="./characters"> [ 人格重曝 ] </a></div>
+        <div><a href="./team"> [ 關於我們 ] </a></div>
+        <div id="icon">
+            <img src="./static/img/search.png">
+        </div>
+    </div>
 
     <div id="header">
         <div id="nav">
@@ -56,6 +69,8 @@
         </div>
         {% endfor %}
     </div>
+
+    <script src="./static/js/common.js"></script>
 
 </body>
 </html>
