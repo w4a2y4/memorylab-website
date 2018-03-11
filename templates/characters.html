@@ -47,13 +47,15 @@
         </p>
     </div>
 
+    <h2>• 基 礎 人 格 •</h2>
+
     <div id="characters">
-        <h2>• 基 礎 人 格 •</h2>
         {% for user in users%}
         <div class="user" 
-             onclick="window.location='characters/{{user.id}}';"
-             style="background-image:url()">
-            <h3>{{user.name}}</h3>
+             onclick="window.location='characters/{{user.id}}';">
+            <div class="profile" style="background-image:url()">
+                 <h3>{{user.name}}</h3>
+            </div>
         </div>
         {% endfor %}
     </div>
