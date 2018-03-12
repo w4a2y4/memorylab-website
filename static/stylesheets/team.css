@@ -44,6 +44,7 @@ h2{
 #one{
     height:150px;
     width:15vw;
+    border: 1px #9DC394 solid;
 }
 #two{
     height: 150px;
