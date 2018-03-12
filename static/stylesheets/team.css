@@ -17,8 +17,32 @@ h2{
     margin-bottom: 50px;
 }
 #memintro{
-    color:white;
     margin-top:50px;
+    margin-left: auto;
+    margin-right: auto;
+    width:60vw;
+}
+#memintro div{
+    float: left;
+    color:#9DC394;
+}
+
+#memintro div div{
+    color:white;
+    text-align: left;
+}   
+
+#memintro div div img{
+    height:150px;
+}
+#one{
+    height:150px;
+    width:15vw;
+}
+#two{
+    height: 150px;
+    width:45vw;
+    padding-left: 30px;
 }
 .line{
     height:1px;

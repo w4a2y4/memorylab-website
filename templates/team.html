@@ -144,60 +144,72 @@
     <div class="line"></div>
 
     <div id="memintro">
+        <!-- <div id="test">
+            [ 測試 ]<br>
+            <div id="one"><img src=https://i.imgur.com/oDv8F2a.jpg></div>
+            <div id="two">阿哈哈<br>阿哈哈西西。12313213213吧啦吧啦淅瀝淅瀝<br></div>
+        </div> -->
         <div id="boss">
             [ 藝術總監 ]<br>
             {% for person in boss %}
-            {{person.picture_url}}<br>
-            <img src="https://i.imgur.com/oDv8F2a.jpg">
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>
             {% endfor %}
         </div>
         <div id="it">
             [ 工程師 ]<br>
             {% for person in it %}
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>
             {% endfor %}
         </div>
         <div id="twoD">
             [ 平面繪畫 ]<br>
             {% for person in twoD %}
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>
             {% endfor %}
         </div>
         <div id="threeD">
             [ 裝置藝術 ]<br>
             {% for person in threeD %}
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>
             {% endfor %}
         </div>
         <div id="anim">
             [ 動畫 ]<br>
             {% for person in anim %}
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>
             {% endfor %}
         </div>
         <div id="ui">
             [ 網頁UI ]<br>
             {% for person in ui %}
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>  
             {% endfor %}
         </div>
         <div id="acent">
             [ 調香師 ]<br>
             {% for person in acent %}
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>
             {% endfor %}
         </div>
         <div id="elect">
             [ 電路 ]<br>
             {% for person in elect %}
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>
             {% endfor %}
         </div>
         <div id="out">
             [ 對外接洽及體驗設計 ]<br>
             {% for person in out %}
-                <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a><br><a>{{person.text}}</a><br>
+                <div id="one"><img src={{person.picture_url}}></div>
+                <div id="two">{{person.name}}<br>{{person.text}}<br></div>
             {% endfor %}
         </div>
     </div>
