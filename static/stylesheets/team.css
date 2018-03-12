@@ -22,18 +22,24 @@ h2{
     margin-right: auto;
     width:60vw;
 }
+
+#block{
+    margin-bottom: 10px;
+}
 #memintro div{
     float: left;
     color:#9DC394;
 }
 
-#memintro div div{
+#memintro div div div{
     color:white;
     text-align: left;
 }   
 
-#memintro div div img{
+#memintro div div div img{
     height:150px;
+    display:block;
+    margin: auto;
 }
 #one{
     height:150px;
@@ -42,7 +48,8 @@ h2{
 #two{
     height: 150px;
     width:45vw;
-    padding-left: 30px;
+    padding-left: 20px;
+    padding-bottom: 5px;
 }
 .line{
     height:1px;
