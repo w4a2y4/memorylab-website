@@ -42,63 +42,215 @@
     </div>
     
     <h2>團隊介紹</h2>
-
+    <div class="line"></div>
     <div class="buttons">
         <button type="button" onclick="document.getElementById('boss').style.display='inline';
         document.getElementById('it').style.display='inline';
         document.getElementById('twoD').style.display='inline';
-        document.getElementById('threeD').style.display='inline';">
+        document.getElementById('threeD').style.display='inline';
+        document.getElementById('anim').style.display='inline';
+        document.getElementById('acent').style.display='inline';
+        document.getElementById('ui').style.display='inline';
+        document.getElementById('elect').style.display='inline';
+        document.getElementById('out').style.display='inline';">
         全部</button>
 
         <button type="button" onclick="document.getElementById('boss').style.display='inline';
         document.getElementById('it').style.display='none';
         document.getElementById('twoD').style.display='none';
-        document.getElementById('threeD').style.display='none';">
-        幹部</button>
+        document.getElementById('threeD').style.display='none';
+        document.getElementById('anim').style.display='none';
+        document.getElementById('acent').style.display='none';
+        document.getElementById('ui').style.display='none';
+        document.getElementById('elect').style.display='none';
+        document.getElementById('out').style.display='none';">
+        藝術總監</button>
         
         <button type="button" onclick="document.getElementById('boss').style.display='none';
         document.getElementById('it').style.display='inline';
         document.getElementById('twoD').style.display='none';
-        document.getElementById('threeD').style.display='none';">
-        程式設計</button>
+        document.getElementById('threeD').style.display='none';
+        document.getElementById('anim').style.display='none';
+        document.getElementById('acent').style.display='none';
+        document.getElementById('ui').style.display='none';
+        document.getElementById('elect').style.display='none';
+        document.getElementById('out').style.display='none';">
+        工程師</button>
 
         <button type="button" onclick="document.getElementById('boss').style.display='none';
         document.getElementById('it').style.display='none';
         document.getElementById('twoD').style.display='inline';
-        document.getElementById('threeD').style.display='none';">
-        平面組</button>
+        document.getElementById('threeD').style.display='none';
+        document.getElementById('anim').style.display='none';
+        document.getElementById('acent').style.display='none';
+        document.getElementById('ui').style.display='none';
+        document.getElementById('elect').style.display='none';
+        document.getElementById('out').style.display='none';">
+        平面繪畫</button>
 
         <button type="button" onclick="document.getElementById('boss').style.display='none';
         document.getElementById('it').style.display='none';
         document.getElementById('twoD').style.display='none';
-        document.getElementById('threeD').style.display='inline';">
-        裝置組</button><br>
-    </div>
+        document.getElementById('threeD').style.display='inline';
+        document.getElementById('anim').style.display='none';
+        document.getElementById('acent').style.display='none';
+        document.getElementById('ui').style.display='none';
+        document.getElementById('elect').style.display='none';
+        document.getElementById('out').style.display='none';">
+        裝置藝術</button>
 
-    <div id="boss">
-        boss<br>
-        {% for person in boss %}
-            <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a> <a>{{person.text}}</a><br>
-        {% endfor %}
+        <button type="button" onclick="document.getElementById('boss').style.display='none';
+        document.getElementById('it').style.display='none';
+        document.getElementById('twoD').style.display='none';
+        document.getElementById('threeD').style.display='none';
+        document.getElementById('anim').style.display='inline';
+        document.getElementById('acent').style.display='none';
+        document.getElementById('ui').style.display='none';
+        document.getElementById('elect').style.display='none';
+        document.getElementById('out').style.display='none';">
+        動畫</button>
+
+        <button type="button" onclick="document.getElementById('boss').style.display='none';
+        document.getElementById('it').style.display='none';
+        document.getElementById('twoD').style.display='none';
+        document.getElementById('threeD').style.display='none';
+        document.getElementById('anim').style.display='none';
+        document.getElementById('acent').style.display='none';
+        document.getElementById('ui').style.display='inline';
+        document.getElementById('elect').style.display='none';
+        document.getElementById('out').style.display='none';">
+        網頁UI</button>
+
+        <button type="button" onclick="document.getElementById('boss').style.display='none';
+        document.getElementById('it').style.display='none';
+        document.getElementById('twoD').style.display='none';
+        document.getElementById('threeD').style.display='none';
+        document.getElementById('anim').style.display='none';
+        document.getElementById('acent').style.display='inline';
+        document.getElementById('ui').style.display='none';
+        document.getElementById('elect').style.display='none';
+        document.getElementById('out').style.display='none';">
+        調香師</button>
+
+        <button type="button" onclick="document.getElementById('boss').style.display='none';
+        document.getElementById('it').style.display='none';
+        document.getElementById('twoD').style.display='none';
+        document.getElementById('threeD').style.display='none';
+        document.getElementById('anim').style.display='none';
+        document.getElementById('acent').style.display='none';
+        document.getElementById('ui').style.display='none';
+        document.getElementById('elect').style.display='inline';
+        document.getElementById('out').style.display='none';">
+        電路</button>
+
+        <button type="button" onclick="document.getElementById('boss').style.display='none';
+        document.getElementById('it').style.display='none';
+        document.getElementById('twoD').style.display='none';
+        document.getElementById('threeD').style.display='none';
+        document.getElementById('anim').style.display='none';
+        document.getElementById('acent').style.display='none';
+        document.getElementById('ui').style.display='none';
+        document.getElementById('elect').style.display='none';
+        document.getElementById('out').style.display='inline';">
+        對外接洽及體驗設計</button><br>
     </div>
-    <div id="it">
-        it<br>
-        {% for person in it %}
-            <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a> <a>{{person.text}}</a><br>
-        {% endfor %}
+    <div class="line"></div>
+
+    <div id="memintro">
+        <!-- <div id="test">
+            [ 測試 ]<br>
+            <div id="block">
+                <div id="one"><img src=https://i.imgur.com/SUXTRSG.png></div>
+                <div id="two">阿哈哈<br>阿哈哈西西。12313213213吧啦吧啦淅瀝淅瀝<br></div>
+            </div>
+            <div id="block">
+                <div id="one"><img src=https://i.imgur.com/SUXTRSG.png></div>
+                <div id="two">阿哈哈<br>阿哈哈西西。12313213213吧啦吧啦淅瀝淅瀝<br></div>
+            </div>
+        </div> -->
+        <div id="boss">
+            [ 藝術總監 ]<br>
+            {% for person in boss %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="it">
+            [ 工程師 ]<br>
+            {% for person in it %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="twoD">
+            [ 平面繪畫 ]<br>
+            {% for person in twoD %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="threeD">
+            [ 裝置藝術 ]<br>
+            {% for person in threeD %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="anim">
+            [ 動畫 ]<br>
+            {% for person in anim %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="ui">
+            [ 網頁UI ]<br>
+            {% for person in ui %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="acent">
+            [ 調香師 ]<br>
+            {% for person in acent %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="elect">
+            [ 電路 ]<br>
+            {% for person in elect %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>  
+                </div>
+            {% endfor %}
+        </div>
+        <div id="out">
+            [ 對外接洽及體驗設計 ]<br>
+            {% for person in out %}
+                <div id="block">
+                    <div id="one"><img src={{person.picture_url}}></div>
+                    <div id="two">{{person.name}}<br>{{person.text}}<br></div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <div id="twoD">
-        twoD<br>
-        {% for person in twoD %}
-            <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a> <a>{{person.text}}</a><br>
-        {% endfor %}
-    </div>
-    <div id="threeD">
-        threeD<br>
-        {% for person in threeD %}
-            <a><img src={{person.picture_url}}></a> <a>{{person.name}}</a> <a>{{person.text}}</a><br>
-        {% endfor %}
-    </div>
+    
 
     <script src="./static/js/common.js"></script>
 
