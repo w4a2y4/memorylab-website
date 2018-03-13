@@ -11,6 +11,11 @@ class User(db.Model):
         backref='user',
         lazy='dynamic'
     )
+    pictures = db.relationship(
+        'Picture',
+        backref='user',
+        lazy='dynamic'
+    )
 
     def __init__(self, name=''):
         self.name = name
@@ -31,6 +36,23 @@ class Question(db.Model):
 
     def __repr__(self):
         return '<Question %r %r>' % ( self.description, self.picture_url)
+
+
+class Picture(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    picture_url = db.Column(db.String(80), default='')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    start_question = db.Column(db.Integer)
+    end_question= db.Column(db.Integer)
+
+    def __init__(self, picture_url='', start_question=0, end_question=0):
+        self.picture_url = picture_url
+        self.start_question = start_question
+        self.end_question = end_question
+
+    def __repr__(self):
+        return '<Picture %r %r>' % ( self.user_id, self.picture_url)
+
 
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)

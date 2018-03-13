@@ -33,10 +33,11 @@ class AuthException(HTTPException):
         ))
 
 # add Admin modelview
-from models import User, Question, db ,Team
+from models import db, User, Question, Team, Picture
 admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(Question, db.session))
+admin.add_view(ModelView(Picture, db.session))
 admin.add_view(ModelView(Team, db.session))
 
 # Import the views module
