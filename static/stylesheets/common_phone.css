@@ -20,6 +20,7 @@
 body {
     background: #1F2020;
     text-align: center;
+    margin: 0;
 }
 
 h2 {
@@ -30,6 +31,7 @@ h2 {
 p {
     color: #FFFFFF;
 }
+
 
 #fixed_head {
     display: none;
@@ -76,24 +78,29 @@ p {
 #logo{
     width:80vw;
     margin: auto;
-    margin-top: 10vh;
+    margin-top: 30px;
 }
-#links_front {
+#links_back {
     display: none;
 }
 
-#links_back a{
+#links_front a{
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    margin-left:100px;
-    margin-right: 100px;
+    color: #9DC394;
+    margin-left:20px;
+    margin-right: 20px;
 }
-#links_back{
-    margin-top: 100px;
-    margin-bottom: 80px;
+#links_front{
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #header_text{
-    margin-bottom: 100px;
+    margin-bottom: 20px;
 }
+#header_text p{
+    color: #9DC394;
+}
+
 

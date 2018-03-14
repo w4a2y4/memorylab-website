@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/flow.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common_phone.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/flow.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/flow_phone.css') }}">
     <title>記憶實驗所 - 實驗流程</title>
 </head>
 <body>
@@ -29,10 +31,15 @@
             <img src="./static/img/search.png">
             <img src="./static/img/facebook.png">
         </div>
+        <div id="links_front">
+            <a href="./flow"> [ 實驗流程 ] </a>
+            <a href="./characters"> [ 人格重曝 ] </a>
+            <a href="./team"> [ 關於我們 ] </a>
+        </div>
         <div id="logo">
             <a href="/"><img src="./static/img/logo.png" width="100%"></a>
         </div>
-        <div id="links">
+        <div id="links_back">
             <a href="./flow"> [ 實驗流程 ] </a>
             <a href="./characters"> [ 人格重曝 ] </a>
             <a href="./team"> [ 關於我們 ] </a>
