@@ -45,10 +45,12 @@
     <!-- 解鎖前要隱藏的部分 -->
     <div id="toHide">
         <div id="profile">
-            <img src="{{ url_for('static', filename = 'profile/{{profile}}') }}">
+            <img src="./../static/questions/{{profile}}">
         </div>
         <div id="evolution">
-            <img src="{{ url_for('static', filename = 'profile/{{profile}}') }}">
+            {%for e in evolutions%}
+                <img src="./../static/evolutions/{{e.path}}">
+            {%endfor%}
         </div>
         <div id="info">
             <h2>{{name}}</h2>
@@ -56,28 +58,17 @@
         </div>
     </div>
 
-    <!-- 實驗初始 -->
-    <div id="initial">
-        {%for i in init%}
-        <img src="./../static/questions/{{i.path}}">
-        <div class="question">
-            <h2>Q{{loop.index}}.</h2>
-            <p>{{i.description}}</p>
-        </div>
-        {%endfor%}
-    </div>
-
-    <!-- 分隔線 -->
-    <div id="divider"></div>
-
     <!-- 實驗歷史 -->
     <div id="history">
         {%for q in questions%}
-        <img src="./../static/questions/{{q.path}}">
-        <div class="question">
-            <h2>Q{{loop.index + 5}}.</h2>
-            <p>{{q.description}}</p>
-        </div>
+            <img src="./../static/questions/{{q.path}}">
+            <div class="question">
+                <h2>Q{{loop.index}}.</h2>
+                <p>{{q.description}}</p>
+            </div>
+            {% if loop.index == 5 %}
+                <div id="divider"></div>
+            {% endif %}
         {%endfor%}
     </div>
 
