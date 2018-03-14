@@ -11,8 +11,8 @@ class User(db.Model):
         backref='user',
         lazy='dynamic'
     )
-    pictures = db.relationship(
-        'Picture',
+    evolutions = db.relationship(
+        'Evolution',
         backref='user',
         lazy='dynamic'
     )
@@ -38,9 +38,9 @@ class Question(db.Model):
         return '<Question %r %r>' % ( self.description, self.picture_url)
 
 
-class Picture(db.Model):
+class Evolution(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    picture_url = db.Column(db.String(80), default='')
+    path = db.Column(db.Unicode(128))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     start_question = db.Column(db.Integer)
     end_question= db.Column(db.Integer)
@@ -51,7 +51,7 @@ class Picture(db.Model):
         self.end_question = end_question
 
     def __repr__(self):
-        return '<Picture %r %r>' % ( self.user_id, self.picture_url)
+        return '<Evolution %r %r>' % ( self.user_id, self.path)
 
 
 class Team(db.Model):
