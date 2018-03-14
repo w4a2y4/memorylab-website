@@ -11,6 +11,11 @@ class User(db.Model):
         backref='user',
         lazy='dynamic'
     )
+    evolutions = db.relationship(
+        'Evolution',
+        backref='user',
+        lazy='dynamic'
+    )
 
     def __init__(self, name=''):
         self.name = name
@@ -22,15 +27,32 @@ class User(db.Model):
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(80), default='')
-    picture_url = db.Column(db.String(80), default='')
+    path = db.Column(db.Unicode(128))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def __init__(self, description='', picture_url=''):
+    def __init__(self, description='', path=''):
         self.description = description
-        self.picture_url = picture_url
+        self.path = path
 
     def __repr__(self):
-        return '<Question %r %r>' % ( self.description, self.picture_url)
+        return '<Question %r %r>' % ( self.description, self.path)
+
+
+class Evolution(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    path = db.Column(db.Unicode(128))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    start_question = db.Column(db.Integer)
+    end_question= db.Column(db.Integer)
+
+    def __init__(self, path='', start_question=0, end_question=0):
+        self.path = path
+        self.start_question = start_question
+        self.end_question = end_question
+
+    def __repr__(self):
+        return '<Evolution %r %r>' % ( self.user_id, self.path)
+
 
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
