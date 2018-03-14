@@ -13,28 +13,28 @@
 
     <div id="fixed_head">
         <div id="mem-lab">
-            <img src="./static/img/logo.png">
+            <img src="./../static/img/logo.png">
         </div>
-        <div><a href="./flow"> [ 實驗流程 ] </a></div>
-        <div><a href="./characters"> [ 人格重曝 ] </a></div>
-        <div><a href="./team"> [ 關於我們 ] </a></div>
+        <div><a href="./../flow"> [ 實驗流程 ] </a></div>
+        <div><a href="./../characters"> [ 人格重曝 ] </a></div>
+        <div><a href="./../team"> [ 關於我們 ] </a></div>
         <div id="icon">
-            <img src="./static/img/search.png">
+            <img src="./../static/img/search.png">
         </div>
     </div>
 
     <div id="header">
         <div id="nav">
-            <img src="./static/img/search.png">
-            <img src="./static/img/facebook.png">
+            <img src="./../static/img/search.png">
+            <img src="./../static/img/facebook.png">
         </div>
         <div id="logo">
-            <a href="/"><img src="./static/img/logo.png" width="100%"></a>
+            <a href="/"><img src="./../static/img/logo.png" width="100%"></a>
         </div>
         <div id="links">
-            <a href="./flow"> [ 實驗流程 ] </a>
-            <a href="./characters"> [ 人格重曝 ] </a>
-            <a href="./team"> [ 關於我們 ] </a>
+            <a href="./../flow"> [ 實驗流程 ] </a>
+            <a href="./../characters"> [ 人格重曝 ] </a>
+            <a href="./../team"> [ 關於我們 ] </a>
         </div>
         <div id="header_text">
             <p>首頁&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人格重曝</p>
@@ -45,29 +45,40 @@
     <!-- 解鎖前要隱藏的部分 -->
     <div id="toHide">
         <div id="profile">
-            <img src="">
+            <img src="{{ url_for('static', filename = 'profile/{{profile}}') }}">
+        </div>
+        <div id="evolution">
+            <img src="{{ url_for('static', filename = 'profile/{{profile}}') }}">
         </div>
         <div id="info">
             <h2>{{name}}</h2>
-            <p>這個人ㄉ介紹</p>
+            <p>{{description}}</p>
         </div>
     </div>
 
     <!-- 實驗初始 -->
-    <div id="initial"></div>
+    <div id="initial">
+        {%for i in init%}
+        <img src="./../static/questions/{{i.path}}">
+        <div class="question">
+            <h2>Q{{loop.index}}.</h2>
+            <p>{{i.description}}</p>
+        </div>
+        {%endfor%}
+    </div>
 
     <!-- 分隔線 -->
     <div id="divider"></div>
 
     <!-- 實驗歷史 -->
     <div id="history">
-        {% for q in questions%}
-        <img src="{{q.picture_url}}">
+        {%for q in questions%}
+        <img src="./../static/questions/{{q.path}}">
         <div class="question">
-            <h2>Q{{q.id}}.</h2>
+            <h2>Q{{loop.index + 5}}.</h2>
             <p>{{q.description}}</p>
         </div>
-        {% endfor %}
+        {%endfor%}
     </div>
 
     <script src="{{ url_for('static', filename = 'js/common.js') }}"></script>
