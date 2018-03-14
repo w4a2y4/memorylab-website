@@ -44,6 +44,7 @@
 
     <!-- 解鎖前要隱藏的部分 -->
     <div id="toHide">
+        <h2>{{name}}</h2>
         <div id="profile">
             <img src="./../static/questions/{{profile}}">
         </div>
@@ -53,7 +54,6 @@
             {%endfor%}
         </div>
         <div id="info">
-            <h2>{{name}}</h2>
             <p>{{description}}</p>
         </div>
     </div>
@@ -61,10 +61,14 @@
     <!-- 實驗歷史 -->
     <div id="history">
         {%for q in questions%}
-            <img src="./../static/questions/{{q.path}}">
-            <div class="question">
-                <h2>Q{{loop.index}}.</h2>
-                <p>{{q.description}}</p>
+            <div class="quest">
+                <div class="img_container">
+                    <img src="./../static/questions/{{q.path}}">
+                </div>
+                <div class="content">
+                    <h2>Q{{loop.index}}.</h2>
+                    <p>{{q.description}}</p>
+                </div>
             </div>
             {% if loop.index == 5 %}
                 <div id="divider"></div>
