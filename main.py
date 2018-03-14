@@ -30,24 +30,43 @@ class AuthException(HTTPException):
             {'WWW-Authenticate': 'Basic realm="Login Required"'}
         ))
 
-file_path = op.join(op.dirname(__file__), 'static/files')
+evo_path = op.join(op.dirname(__file__), 'static/evolutions')
+quest_path = op.join(op.dirname(__file__), 'static/questions')
 try:
-    os.mkdir(file_path)
+    os.mkdir(evo_path)
+except OSError:
+    pass
+try:
+    os.mkdir(quest_path)
 except OSError:
     pass
 
 @listens_for(Evolution, 'after_delete')
-def del_image(mapper, connection, target):
+def del_evo(mapper, connection, target):
     if target.path:
-        # Delete image
         try:
-            os.remove(op.join(file_path, target.path))
+            os.remove(op.join(evo_path, target.path))
         except OSError:
             pass
 
         # Delete thumbnail
         try:
-            os.remove(op.join(file_path,
+            os.remove(op.join(evo_path,
+                              form.thumbgen_filename(target.path)))
+        except OSError:
+            pass
+
+@listens_for(Question, 'after_delete')
+def del_quest(mapper, connection, target):
+    if target.path:
+        try:
+            os.remove(op.join(quest_path, target.path))
+        except OSError:
+            pass
+
+        # Delete thumbnail
+        try:
+            os.remove(op.join(quest_path,
                               form.thumbgen_filename(target.path)))
         except OSError:
             pass
@@ -56,19 +75,27 @@ class EvolutionView(ModelView):
     def _list_thumbnail(view, context, model, name):
         if not model.path:
             return ''
-        fname = 'files/' + form.thumbgen_filename(model.path)
+        fname = 'evolutions/' + form.thumbgen_filename(model.path)
         return Markup('<img src="%s">' % url_for('static',
                                                  filename=fname))
-
-    column_formatters = {
-        'path': _list_thumbnail
-    }
-
-    # Alternative way to contribute field is to override it completely.
-    # In this case, Flask-Admin won't attempt to merge various parameters for the field.
+    column_formatters = {'path': _list_thumbnail}
     form_extra_fields = {
         'path': form.ImageUploadField('Evolution',
-                                      base_path=file_path,
+                                      base_path=evo_path,
+                                      thumbnail_size=(100, 100, True))
+    }
+
+class QuestionView(ModelView):
+    def _list_thumbnail(view, context, model, name):
+        if not model.path:
+            return ''
+        fname = 'questions/' + form.thumbgen_filename(model.path)
+        return Markup('<img src="%s">' % url_for('static',
+                                                 filename=fname))
+    column_formatters = {'path': _list_thumbnail}
+    form_extra_fields = {
+        'path': form.ImageUploadField('Question',
+                                      base_path=quest_path,
                                       thumbnail_size=(100, 100, True))
     }
 
@@ -84,7 +111,7 @@ class ModelView(ModelView):
 
 admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Question, db.session))
+admin.add_view(QuestionView(Question, db.session))
 admin.add_view(EvolutionView(Evolution, db.session))
 admin.add_view(ModelView(Team, db.session))
 
