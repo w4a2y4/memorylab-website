@@ -25,17 +25,25 @@ def characters():
 
 
 # each character
-@app.route('/characters/<int:user_id>')
+@app.route('/character/<int:user_id>')
 def character(user_id):
 
     user = User.query.get_or_404(user_id)
     name = user.name
+    description = user.description
+    profile = user.profile
+    init = user.init.all()
     questions = user.questions.all()
+    evolutions = user.evolutions.all()
 
     return render_template('character.html',
                            user=user,
                            name=name,
-                           questions=questions)
+                           description=description,
+                           profile=profile,
+                           init=init,
+                           questions=questions,
+                           evolutions=evolutions)
 
 
 # team
