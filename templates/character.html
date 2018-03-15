@@ -7,7 +7,6 @@
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character.css') }}">
@@ -48,11 +47,11 @@
 
     <!-- 解鎖前要隱藏的部分 -->
     <div id="toHide">
-        <h2>{{name}}</h2>
         <div id="info">
             <div id="profile">
                 <img src="./../static/questions/{{profile}}">
             </div>
+            <h2>{{name}}</h2>
             <p>{{description}}</p>
         </div>
     </div>
@@ -97,13 +96,11 @@
             new ScrollMagic.Scene(
                     {triggerElement: "#quest{{e.start_question}}", duration: du})
                     .setTween("#ev{{loop.index}}", {opacity: "1"})
-                    .addIndicators()
                     .addTo(controller);
             // fade out
             new ScrollMagic.Scene(
                     {triggerElement: "#quest{{e.end_question}}", duration: du})
                     .setTween("#ev{{loop.index}}", {opacity: "0"})
-                    .addIndicators()
                     .addTo(controller);
         {%endfor%}
     </script>

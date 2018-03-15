@@ -2,6 +2,7 @@
     width: 75vw;
     padding: 10px;
     margin: auto;
+    text-align: justify;
 }
 
 #profile {
@@ -66,7 +67,6 @@
 .quest .content {
     margin-left: 280px;
     display: flex;
-    /*align-items: center;*/
     text-align: left;
     flex-wrap: nowrap;
     flex-direction: column;
