@@ -33,6 +33,7 @@
 }
 
 #evolution img {
+    opacity: 0;
     height: 300px;
     position: absolute;
     top: cal(50% - 150px);
