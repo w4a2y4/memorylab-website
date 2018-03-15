@@ -82,7 +82,6 @@ p {
     text-decoration: none;
     color: white;
     font-family: "柔源";
-    font-weight: 500;
     font-size: 18px;
 }
 
@@ -94,12 +93,13 @@ p {
     height: 40px;
 }
 
-#nav{
-    text-align: right;
+#nav {
+    padding: 10px;
 }
 
 #nav img{
-    height: 20px;
+    float: right;
+    height: 40px;
 }
 
 #logo{
@@ -111,7 +111,6 @@ p {
 #links a{
     text-decoration: none;
     font-family: "柔源";
-    font-weight: 500;
     color: rgb(255, 255, 255);
     margin-left:100px;
     margin-right: 100px;
@@ -122,9 +121,9 @@ p {
     margin-bottom: 80px;
 }
 
-#header_text{
+#header_text p{
     margin-bottom: 100px;
     font-family: "柔源";
-    font-weight: 500;
+    color: #BEBEBE;
 }
 
