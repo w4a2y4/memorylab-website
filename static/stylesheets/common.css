@@ -50,6 +50,7 @@ body {
 
 h2 {
     font-family: "柔源P";
+    font-weight: bold;
     color: #9DC394;
 }
 
@@ -81,7 +82,8 @@ p {
     text-decoration: none;
     color: white;
     font-family: "柔源";
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 18px;
 }
 
 #fixed_head #icon{
@@ -108,10 +110,13 @@ p {
 
 #links a{
     text-decoration: none;
+    font-family: "柔源";
+    font-weight: 500;
     color: rgb(255, 255, 255);
     margin-left:100px;
     margin-right: 100px;
 }
+
 #links{
     margin-top: 100px;
     margin-bottom: 80px;
@@ -119,5 +124,7 @@ p {
 
 #header_text{
     margin-bottom: 100px;
+    font-family: "柔源";
+    font-weight: 500;
 }
 
