@@ -7,14 +7,40 @@
     font-family:'Noto Sans TC',sans-serif;
 }
 
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Light.ttf);
+    font-weight: lighter;
+}
 
 @font-face {
     font-family: "柔源";
-    src: url(GenJyuuGothic-P-Bold.ttf);
+    src: url(GenJyuuGothic-Normal.ttf);
+    font-weight: normal;
 }
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Regular.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Medium.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Bold.ttf);
+    font-weight: bold;
+}
+
 @font-face {
     font-family: "柔源P";
-    src: url(GenJyuuGothic-Bold.ttf);
+    src: url(GenJyuuGothic-P-Bold.ttf);
+    font-weight: bold;
 }
 
 body {
