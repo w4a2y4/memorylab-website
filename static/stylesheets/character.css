@@ -1,16 +1,19 @@
 #toHide {
     width: 75vw;
-    min-height: 470px;
     padding: 10px;
     margin: auto;
-    margin-bottom: 30px;
 }
 
 #profile {
     height: 380px;
     width: 380px;
     background-color: #D9E0E7;
-    position: absolute;
+    float: left;
+    margin-right: 20px;
+}
+
+#info {
+    min-height: 400px;
 }
 
 #profile img {
@@ -27,7 +30,6 @@
     left: 35%;
     justify-content: center;
     align-items: center;
-    /*background-color: pink;*/
 }
 
 #evolution img {
@@ -36,14 +38,9 @@
     top: cal(50% - 150px);
 }
 
-#info {
-    margin-left: 410px;
-}
-
 #history {
     width: 80vw;
     margin: auto;
-    /*z-index: 3;*/
 }
 
 .quest {
@@ -67,6 +64,11 @@
 
 .quest .content {
     margin-left: 280px;
+    display: flex;
+    /*align-items: center;*/
+    text-align: left;
+    flex-wrap: nowrap;
+    flex-direction: column;
 }
 
 .divider {
