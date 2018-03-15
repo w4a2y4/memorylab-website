@@ -48,19 +48,30 @@
         <div id="profile">
             <img src="./../static/questions/{{profile}}">
         </div>
-        <div id="evolution">
-            {%for e in evolutions%}
-                <img src="./../static/evolutions/{{e.path}}">
-            {%endfor%}
-        </div>
         <div id="info">
             <p>{{description}}</p>
         </div>
     </div>
 
+    <!-- 人格演進 -->
+    <div id="evolution">
+        {%for e in evolutions%}
+            <img src="./../static/evolutions/{{e.path}}">
+        {%endfor%}
+    </div>
+
+    <div class="divider">
+        <div></div>
+    </div>
+
     <!-- 實驗歷史 -->
     <div id="history">
         {%for q in questions%}
+            {% if loop.index == 6 %}
+                <div class="divider">
+                    <div></div>
+                </div>
+            {% endif %}
             <div class="quest">
                 <div class="img_container">
                     <img src="./../static/questions/{{q.path}}">
@@ -70,9 +81,6 @@
                     <p>{{q.description}}</p>
                 </div>
             </div>
-            {% if loop.index == 5 %}
-                <div id="divider"></div>
-            {% endif %}
         {%endfor%}
     </div>
 
