@@ -6,9 +6,16 @@ db = SQLAlchemy()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, default='')
-    questions = db.relationship(
+    profile = db.Column(db.String(200), default='')
+    description = db.Column(db.String(2000), default='')
+    init = db.relationship(
         'Question',
         backref='user',
+        lazy='dynamic'
+    )
+    questions = db.relationship(
+        'Question',
+        backref='user_init',
         lazy='dynamic'
     )
     evolutions = db.relationship(

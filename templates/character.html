@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character.css') }}">
     <title>記憶實驗所 - 人格重曝</title>
@@ -13,28 +16,28 @@
 
     <div id="fixed_head">
         <div id="mem-lab">
-            <img src="./static/img/logo.png">
+            <img src="./../static/img/logo.png">
         </div>
-        <div><a href="./flow"> [ 實驗流程 ] </a></div>
-        <div><a href="./characters"> [ 人格重曝 ] </a></div>
-        <div><a href="./team"> [ 關於我們 ] </a></div>
+        <div><a href="./../flow"> [ 實驗流程 ] </a></div>
+        <div><a href="./../characters"> [ 人格重曝 ] </a></div>
+        <div><a href="./../team"> [ 關於我們 ] </a></div>
         <div id="icon">
-            <img src="./static/img/search.png">
+            <img src="./../static/img/search.png">
         </div>
     </div>
 
     <div id="header">
         <div id="nav">
-            <img src="./static/img/search.png">
-            <img src="./static/img/facebook.png">
+            <img src="./../static/img/search.png">
+            <img src="./../static/img/facebook.png">
         </div>
         <div id="logo">
-            <a href="/"><img src="./static/img/logo.png" width="100%"></a>
+            <a href="/"><img src="./../static/img/logo.png" width="100%"></a>
         </div>
         <div id="links">
-            <a href="./flow"> [ 實驗流程 ] </a>
-            <a href="./characters"> [ 人格重曝 ] </a>
-            <a href="./team"> [ 關於我們 ] </a>
+            <a href="./../flow"> [ 實驗流程 ] </a>
+            <a href="./../characters"> [ 人格重曝 ] </a>
+            <a href="./../team"> [ 關於我們 ] </a>
         </div>
         <div id="header_text">
             <p>首頁&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人格重曝</p>
@@ -44,31 +47,63 @@
 
     <!-- 解鎖前要隱藏的部分 -->
     <div id="toHide">
-        <div id="profile">
-            <img src="">
-        </div>
         <div id="info">
+            <div id="profile">
+                <img src="./../static/questions/{{profile}}">
+            </div>
             <h2>{{name}}</h2>
-            <p>這個人ㄉ介紹</p>
+            <p>{{description}}</p>
         </div>
     </div>
 
-    <!-- 實驗初始 -->
-    <div id="initial"></div>
+    <!-- 人格演進 -->
+    <div id="evolution">
+        {%for e in evolutions%}
+            <img id="ev{{loop.index}}" src="./../static/evolutions/{{e.path}}">
+        {%endfor%}
+    </div>
 
-    <!-- 分隔線 -->
-    <div id="divider"></div>
+    <div class="divider">
+        <div></div>
+    </div>
 
     <!-- 實驗歷史 -->
     <div id="history">
-        {% for q in questions%}
-        <img src="{{q.picture_url}}">
-        <div class="question">
-            <h2>Q{{q.id}}.</h2>
-            <p>{{q.description}}</p>
-        </div>
-        {% endfor %}
+        {%for q in questions%}
+            {% if loop.index == 6 %}
+                <div class="divider">
+                    <div></div>
+                </div>
+            {% endif %}
+            <div class="quest" id="quest{{loop.index}}">
+                <div class="img_container">
+                    <img src="./../static/questions/{{q.path}}">
+                </div>
+                <div class="content">
+                    <h2>Q{{loop.index}}.</h2>
+                    <p>{{q.description}}</p>
+                </div>
+            </div>
+        {%endfor%}
     </div>
+
+    <script>
+        var controller = new ScrollMagic.Controller();
+        {%for e in evolutions%}
+            // fade in
+            console.log({{loop.index}});
+            var du = $('#quest{{e.start_question}}').height();
+            new ScrollMagic.Scene(
+                    {triggerElement: "#quest{{e.start_question}}", duration: du})
+                    .setTween("#ev{{loop.index}}", {opacity: "1"})
+                    .addTo(controller);
+            // fade out
+            new ScrollMagic.Scene(
+                    {triggerElement: "#quest{{e.end_question}}", duration: du})
+                    .setTween("#ev{{loop.index}}", {opacity: "0"})
+                    .addTo(controller);
+        {%endfor%}
+    </script>
 
     <script src="{{ url_for('static', filename = 'js/common.js') }}"></script>
 
