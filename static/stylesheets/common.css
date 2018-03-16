@@ -61,6 +61,10 @@ p {
     letter-spacing: 1px;
 }
 
+#toggle {
+    display: none;
+}
+
 #fixed_head {
     display: none;
     position: fixed;

@@ -34,7 +34,8 @@ p {
 
 
 #fixed_head {
-    display: none;
+    display: flex;
+    justify-content:space-between;
     position: fixed;
     top: 0;
     width: 100%;
@@ -52,19 +53,20 @@ p {
     align-items:center;
 }
 
-#fixed_head a{
-    text-decoration: none;
-    color: white;
-    font-family: "柔源";
-    font-size: 16px;
-}
-
-#fixed_head #icon{
-    float: right;
+#fixed_head .fixed_link{
+    display: none;
 }
 
 #fixed_head img{
     height: 40px;
+}
+
+#icon img{
+    height: 30px;
+}
+
+#toggle img {
+    height: 30px;
 }
 
 #nav{
@@ -76,10 +78,11 @@ p {
 }
 
 #logo{
-    width:80vw;
+    width:90vw;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 20px;
 }
+
 #links_back {
     display: none;
 }
@@ -90,7 +93,9 @@ p {
     margin-left:20px;
     margin-right: 20px;
 }
+
 #links_front{
+    display: block;
     float: left;
     margin-top: 20px;
     margin-bottom: 20px;
