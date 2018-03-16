@@ -8,9 +8,8 @@
 }
 
 @font-face {
-    font-family: "柔源";
+    font-family: "柔源l";
     src: url(GenJyuuGothic-Light.ttf);
-    font-weight: lighter;
 }
 
 @font-face {
@@ -174,6 +173,26 @@ p {
     #nav img{
         height: 20px;
     }
+}
+
+#menu {
+    display: none;
+    position: fixed;
+    background-color: #1F2020;
+    top: 0px;
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+#menu a {
+    display: block;
+    margin: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    font-family: "柔源l";
+    letter-spacing: 10px;
+    color: #9DC394;
 }
 
 #logo{
