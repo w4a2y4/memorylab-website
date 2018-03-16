@@ -52,11 +52,11 @@
             <a href="./team"> [ 關於我們 ] </a>
         </div>
         <div id="header_text">
-            <p>首頁</p>
+            <p>首頁&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;關於我們</p>
         </div>
     </div>
     
-    <h2>團隊介紹</h2>
+    <h2>• 團隊介紹 •</h2>
     <div class="line"></div>
     <div class="buttons">
         <button type="button" onclick="document.getElementById('boss').style.display='inline';
@@ -172,7 +172,7 @@
     <div class="line"></div>
 
     <div id="memintro">
-        <div id="test">
+        <!-- <div id="test">
             <div id="title">[ 測試 ]<br></div> 
             <div id="block">
                 <div id="one"><img src=https://i.imgur.com/SUXTRSG.png></div>
@@ -186,7 +186,7 @@
                 <div id="one"><img src=https://i.imgur.com/SUXTRSG.png></div>
                 <div id="two"><div id="name">阿哈哈</div><br><div id="text">阿哈哈西西。12313213213吧啦吧啦淅瀝淅瀝<br></div></div>
             </div>
-        </div>
+        </div> -->
         <div id="boss">
             <div id="title">[ 藝術總監 ]<br></div>
             {% for person in boss %}
@@ -224,7 +224,7 @@
             {% endfor %}
         </div>
         <div id="anim">
-            <div id=title>[ 動畫 ]<br></idv>
+            <div id=title>[ 動畫 ]<br></div>
             {% for person in anim %}
                 <div id="block">
                     <div id="one"><img src={{person.picture_url}}></div>
@@ -268,6 +268,7 @@
                 </div>
             {% endfor %}
         </div>
+        <div id="footer"></div>
     </div>
     
 
