@@ -61,63 +61,111 @@ p {
     letter-spacing: 1px;
 }
 
-#toggle {
-    display: none;
+@media screen and (min-width: 800px) {
+    #toggle {
+        display: none;
+    }
+
+    #fixed_head {
+        display: none;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        background: #1F2020;
+        z-index: 10;
+    }
+
+    #fixed_head div{
+        float: left;
+        height: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 15px;
+        display: flex;
+        align-items:center;
+    }
+
+    #fixed_head a{
+        text-decoration: none;
+        color: white;
+        font-family: "柔源";
+        font-size: 18px;
+    }
+
+    #fixed_head #icon{
+        padding: 2.5px;
+        float: right;
+    }
+
+    #fixed_head img{
+        height: 40px;
+        margin-top: 10px;
+    }
+
+    #icon img{
+        height: 35px;
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+
+    #nav {
+        width: 100%;
+        height: 40px;
+    }
+
+    #nav img{
+        float: right;
+        height: 35px;
+        margin-top: 5px;
+        margin-right: 15px;
+    }
 }
 
-#fixed_head {
-    display: none;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    background: #1F2020;
-    z-index: 10;
-}
+@media screen and (max-width: 800px){
+    #fixed_head {
+        display: flex;
+        justify-content:space-between;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        background: #1F2020;
+    }
 
-#fixed_head div{
-    float: left;
-    height: 100%;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 15px;
-    display: flex;
-    align-items:center;
-}
+    #fixed_head div{
+        float: left;
+        height: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 15px;
+        display: flex;
+        align-items:center;
+    }
 
-#fixed_head a{
-    text-decoration: none;
-    color: white;
-    font-family: "柔源";
-    font-size: 18px;
-}
+    #fixed_head .fixed_link{
+        display: none;
+    }
 
-#fixed_head #icon{
-    padding: 2.5px;
-    float: right;
-}
+    #fixed_head img{
+        height: 40px;
+    }
 
-#fixed_head img{
-    height: 40px;
-    margin-top: 10px;
-}
+    #icon img{
+        height: 30px;
+    }
 
-#icon img{
-    height: 35px;
-    margin-right: 15px;
-    margin-top: 5px;
-}
+    #toggle img {
+        height: 30px;
+    }
 
-#nav {
-    width: 100%;
-    height: 40px;
-}
+    #nav{
+        text-align: right;
+    }
 
-#nav img{
-    float: right;
-    height: 35px;
-    margin-top: 5px;
-    margin-right: 15px;
+    #nav img{
+        height: 20px;
+    }
 }
 
 #logo{
@@ -125,6 +173,7 @@ p {
     margin: auto;
     margin-top: 10vh;
 }
+
 #links_front {
     display: none;
 }
