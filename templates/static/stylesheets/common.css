@@ -1,0 +1,228 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family:'Noto Sans TC',sans-serif;
+}
+
+@font-face {
+    font-family: "柔源l";
+    src: url(GenJyuuGothic-Light.ttf);
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Monospace-Normal.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Monospace-Regular.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Monospace-Medium.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "柔源P";
+    src: url(GenJyuuGothic-P-Bold.ttf);
+    font-weight: bold;
+}
+
+body {
+    background: #1F2020;
+    text-align: center;
+}
+
+h2 {
+    font-family: "柔源P";
+    font-weight: bold;
+    color: #9DC394;
+    letter-spacing: 5px;
+}
+
+p {
+    color: #D9E0E7;
+    line-height: 200%;
+    letter-spacing: 1px;
+}
+
+@media screen and (min-width: 800px) {
+
+    #fixed_head {
+        display: none;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        background: #1F2020;
+        z-index: 10;
+    }
+
+    #fixed_head div{
+        float: left;
+        height: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 15px;
+    }
+
+    #toggle {
+        padding: 0px;
+        margin: 0px;
+        width: 0px;
+    }
+
+    #toggle img {
+        display: none;
+    }
+
+    #fixed_head a{
+        text-decoration: none;
+        color: white;
+        font-family: "柔源";
+        font-size: 18px;
+    }
+
+    #fixed_head #icon{
+        padding: 2.5px;
+        float: right;
+    }
+
+    #fixed_head img{
+        height: 40px;
+        margin-top: -5px;
+    }
+
+    #icon img{
+        height: 35px;
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+
+    #nav {
+        width: 100%;
+        height: 40px;
+    }
+
+    #nav img{
+        float: right;
+        height: 35px;
+        margin-top: 5px;
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width: 800px){
+    #fixed_head {
+        display: flex;
+        flex-wrap:nowrap;
+        justify-content:space-between;
+        align-items:center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 50px;
+        background: #1F2020;
+    }
+
+    #fixed_head div{
+        float: none;
+        height: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 7.5px;
+        display: inline-block;
+    }
+
+    #fixed_head .fixed_link{
+        display: none;
+    }
+
+    #fixed_head img{
+        height: 35px;
+    }
+
+    #icon img{
+        margin-top: 5px;
+        height: 25px;
+    }
+
+    #toggle img {
+        margin-top: 5px;
+        height: 25px;
+    }
+
+    #nav{
+        text-align: right;
+    }
+
+    #nav img{
+        height: 20px;
+    }
+}
+
+#menu {
+    display: none;
+    position: fixed;
+    background-color: #1F2020;
+    top: 0px;
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+#menu a {
+    display: block;
+    margin: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    font-family: "柔源l";
+    letter-spacing: 10px;
+    color: #9DC394;
+}
+
+#logo{
+    width:80vw;
+    margin: auto;
+    margin-top: 10vh;
+}
+
+#links_front {
+    display: none;
+}
+
+#links_back{
+    padding-top: 100px;
+    padding-bottom: 80px;
+    margin: auto;
+    display: flex;
+    width: 80vw;
+    justify-content: space-around;
+}
+
+#links_back a{
+    text-decoration: none;
+    font-family: "柔源";
+    color: rgb(255, 255, 255);
+}
+
+#header_text p{
+    margin-bottom: 100px;
+    font-family: "柔源";
+    color: #BEBEBE;
+}
+
