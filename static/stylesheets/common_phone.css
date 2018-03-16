@@ -10,26 +10,56 @@
 
 @font-face {
     font-family: "柔源";
-    src: url(GenJyuuGothic-P-Bold.ttf);
+    src: url(GenJyuuGothic-Light.ttf);
+    font-weight: lighter;
 }
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Monospace-Normal.ttf);
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Monospace-Regular.ttf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Monospace-Medium.ttf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "柔源";
+    src: url(GenJyuuGothic-Bold.ttf);
+    font-weight: bold;
+}
+
 @font-face {
     font-family: "柔源P";
-    src: url(GenJyuuGothic-Bold.ttf);
+    src: url(GenJyuuGothic-P-Bold.ttf);
+    font-weight: bold;
 }
 
 body {
     background: #1F2020;
     text-align: center;
-    margin: 0;
 }
 
 h2 {
     font-family: "柔源P";
+    font-weight: bold;
     color: #9DC394;
+    letter-spacing: 5px;
 }
 
 p {
-    color: #FFFFFF;
+    color: #D9E0E7;
+    line-height: 200%;
+    letter-spacing: 1px;
 }
 
 #fixed_head {
