@@ -7,4 +7,9 @@ $(window).scroll(function() {
     }
     else if ($('#fixed_head').css('opacity') > 0)
         $('#fixed_head').fadeOut(200);
+        $('#menu').fadeOut(200);
+});
+
+$('#toggle img').click(function(){
+    $("#menu").toggle();
 });

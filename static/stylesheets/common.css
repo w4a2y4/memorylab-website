@@ -8,9 +8,8 @@
 }
 
 @font-face {
-    font-family: "柔源";
+    font-family: "柔源l";
     src: url(GenJyuuGothic-Light.ttf);
-    font-weight: lighter;
 }
 
 @font-face {
@@ -61,48 +60,139 @@ p {
     letter-spacing: 1px;
 }
 
-#fixed_head {
+@media screen and (min-width: 800px) {
+
+    #fixed_head {
+        display: none;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        background: #1F2020;
+        z-index: 10;
+    }
+
+    #fixed_head div{
+        float: left;
+        height: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 15px;
+    }
+
+    #toggle {
+        padding: 0px;
+        margin: 0px;
+        width: 0px;
+    }
+
+    #toggle img {
+        display: none;
+    }
+
+    #fixed_head a{
+        text-decoration: none;
+        color: white;
+        font-family: "柔源";
+        font-size: 18px;
+    }
+
+    #fixed_head #icon{
+        padding: 2.5px;
+        float: right;
+    }
+
+    #fixed_head img{
+        height: 40px;
+        margin-top: -5px;
+    }
+
+    #icon img{
+        height: 35px;
+        margin-right: 15px;
+        margin-top: 5px;
+    }
+
+    #nav {
+        width: 100%;
+        height: 40px;
+    }
+
+    #nav img{
+        float: right;
+        height: 35px;
+        margin-top: 5px;
+        margin-right: 15px;
+    }
+}
+
+@media screen and (max-width: 800px){
+    #fixed_head {
+        display: flex;
+        flex-wrap:nowrap;
+        justify-content:space-between;
+        align-items:center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 50px;
+        background: #1F2020;
+    }
+
+    #fixed_head div{
+        float: none;
+        height: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 7.5px;
+        display: inline-block;
+    }
+
+    #fixed_head .fixed_link{
+        display: none;
+    }
+
+    #fixed_head img{
+        height: 35px;
+    }
+
+    #icon img{
+        margin-top: 5px;
+        height: 25px;
+    }
+
+    #toggle img {
+        margin-top: 5px;
+        height: 25px;
+    }
+
+    #nav{
+        text-align: right;
+    }
+
+    #nav img{
+        height: 20px;
+    }
+}
+
+#menu {
     display: none;
     position: fixed;
-    top: 0;
+    background-color: #1F2020;
+    top: 0px;
+    margin-top: 50px;
     width: 100%;
-    height: 60px;
-    background: #1F2020;
-    z-index: 10;
+    text-align: center;
 }
 
-#fixed_head div{
-    float: left;
-    height: 100%;
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 15px;
-    display: flex;
-    align-items:center;
-}
-
-#fixed_head a{
+#menu a {
+    display: block;
+    margin: 10px;
+    font-size: 15px;
     text-decoration: none;
-    color: white;
-    font-family: "柔源";
-    font-size: 18px;
-}
-
-#fixed_head #icon{
-    float: right;
-}
-
-#fixed_head img{
-    height: 40px;
-}
-
-#nav {
-    padding: 10px;
-}
-
-#nav img{
-    float: right;
-    height: 40px;
+    font-family: "柔源l";
+    letter-spacing: 10px;
+    color: #9DC394;
 }
 
 #logo{
@@ -110,21 +200,24 @@ p {
     margin: auto;
     margin-top: 10vh;
 }
+
 #links_front {
     display: none;
+}
+
+#links_back{
+    padding-top: 100px;
+    padding-bottom: 80px;
+    margin: auto;
+    display: flex;
+    width: 80vw;
+    justify-content: space-around;
 }
 
 #links_back a{
     text-decoration: none;
     font-family: "柔源";
     color: rgb(255, 255, 255);
-    margin-left:100px;
-    margin-right: 100px;
-}
-
-#links_back{
-    margin-top: 100px;
-    margin-bottom: 80px;
 }
 
 #header_text p{

@@ -5,37 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-<<<<<<< HEAD
     <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/ScrollMagic.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character.css') }}">
-=======
     <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
     <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common_phone.css') }}">
     <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character.css') }}">
     <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character_phone.css') }}">
->>>>>>> phone_team_flow
     <title>記憶實驗所 - 人格重曝</title>
 </head>
 <body>
 
     <div id="fixed_head">
+        <div id="toggle">
+            <img src="./../static/img/menu.png">
+        </div>
         <div id="mem-lab">
             <img src="./../static/img/logo.png">
         </div>
-        <div><a href="./../flow"> [ 實驗流程 ] </a></div>
-        <div><a href="./../characters"> [ 人格重曝 ] </a></div>
-        <div><a href="./../team"> [ 關於我們 ] </a></div>
+        <div class="fixed_link"><a href="./../flow"> [ 實驗流程 ] </a></div>
+        <div class="fixed_link"><a href="./../characters"> [ 人格重曝 ] </a></div>
+        <div class="fixed_link"><a href="./../team"> [ 關於我們 ] </a></div>
         <div id="icon">
-            <img src="./../static/img/facebook.png">
+            <a href="http://www.facebook.com/NTUartfest.MemoryLab/"><img src="./static/img/facebook.png"></a>
         </div>
+    </div>
+
+    <div id="menu">
+        <a href="./../flow"> [ 實驗流程 ] </a>
+        <a href="./../characters"> [ 人格重曝 ] </a>
+        <a href="./../team"> [ 關於我們 ] </a>
     </div>
 
     <div id="header">
         <div id="nav">
-            <img src="./../static/img/facebook.png">
+            <a href="http://www.facebook.com/NTUartfest.MemoryLab/"><img src="./../static/img/facebook.png"></a>
         </div>
         <div id="links_front">
             <a href="./../flow"> [ 實驗流程 ] </a>
@@ -43,7 +47,7 @@
             <a href="./../team"> [ 關於我們 ] </a>
         </div>
         <div id="logo">
-            <a href="/"><img src="./../static/img/logo.png" width="100%"></a>
+            <a href="/"><img src="./static/img/logo.png" width="100%"></a>
         </div>
         <div id="links_back">
             <a href="./../flow"> [ 實驗流程 ] </a>
@@ -51,7 +55,7 @@
             <a href="./../team"> [ 關於我們 ] </a>
         </div>
         <div id="header_text">
-            <p>首頁&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人格重曝</p>
+            <p>首頁</p>
         </div>
     </div>
     
