@@ -62,9 +62,6 @@ p {
 }
 
 @media screen and (min-width: 800px) {
-    #toggle {
-        display: none;
-    }
 
     #fixed_head {
         display: none;
@@ -82,8 +79,16 @@ p {
         margin-left: 5px;
         margin-right: 5px;
         padding: 15px;
-        display: flex;
-        align-items:center;
+    }
+
+    #toggle {
+        padding: 0px;
+        margin: 0px;
+        width: 0px;
+    }
+
+    #toggle img {
+        display: none;
     }
 
     #fixed_head a{
@@ -100,7 +105,7 @@ p {
 
     #fixed_head img{
         height: 40px;
-        margin-top: 10px;
+        margin-top: -5px;
     }
 
     #icon img{

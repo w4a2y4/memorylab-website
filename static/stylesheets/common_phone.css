@@ -71,11 +71,7 @@ p {
 }
 
 #nav{
-    text-align: right;
-}
-
-#nav img{
-    height: 20px;
+    display: none;
 }
 
 #logo{
