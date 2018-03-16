@@ -127,10 +127,11 @@ p {
         display: flex;
         flex-wrap:nowrap;
         justify-content:space-between;
+        align-items:center;
         position: fixed;
         top: 0;
         width: 100%;
-        height: 60px;
+        height: 50px;
         background: #1F2020;
     }
 
@@ -139,9 +140,8 @@ p {
         height: 100%;
         margin-left: 5px;
         margin-right: 5px;
-        padding: 10px;
-        display: inline-flex;
-        align-items:center;
+        padding: 7.5px;
+        display: inline-block;
     }
 
     #fixed_head .fixed_link{
@@ -149,15 +149,17 @@ p {
     }
 
     #fixed_head img{
-        height: 40px;
+        height: 35px;
     }
 
     #icon img{
-        height: 30px;
+        margin-top: 5px;
+        height: 25px;
     }
 
     #toggle img {
-        height: 30px;
+        margin-top: 5px;
+        height: 25px;
     }
 
     #nav{
@@ -179,17 +181,19 @@ p {
     display: none;
 }
 
+#links_back{
+    padding-top: 100px;
+    padding-bottom: 80px;
+    margin: auto;
+    display: flex;
+    width: 80vw;
+    justify-content: space-around;
+}
+
 #links_back a{
     text-decoration: none;
     font-family: "柔源";
     color: rgb(255, 255, 255);
-    margin-left:100px;
-    margin-right: 100px;
-}
-
-#links_back{
-    margin-top: 100px;
-    margin-bottom: 80px;
 }
 
 #header_text p{
