@@ -118,9 +118,10 @@ admin.add_view(ModelView(Team, db.session))
 # Import the views module
 from views import *
 
+db.app = app
+db.init_app(app)
+db.create_all()
+
 if __name__ == '__main__':
-    db.app = app
-    db.init_app(app)
-    db.create_all()
     app.run()
 
