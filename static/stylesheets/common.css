@@ -125,6 +125,7 @@ p {
 @media screen and (max-width: 800px){
     #fixed_head {
         display: flex;
+        flex-wrap:nowrap;
         justify-content:space-between;
         position: fixed;
         top: 0;
@@ -134,12 +135,12 @@ p {
     }
 
     #fixed_head div{
-        float: left;
+        float: none;
         height: 100%;
         margin-left: 5px;
         margin-right: 5px;
-        padding: 15px;
-        display: flex;
+        padding: 10px;
+        display: inline-flex;
         align-items:center;
     }
 
