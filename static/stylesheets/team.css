@@ -30,7 +30,14 @@ h2{
     float: left;
     color:#9DC394;
 }
-
+#title{
+    text-align: center;
+    margin-top:20px;
+    margin-bottom: 20px; 
+    margin-left:auto;
+    margin-right:auto;
+    width:60vw;
+}
 #memintro div div div{
     color:white;
     text-align: left;
