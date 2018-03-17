@@ -1,5 +1,7 @@
 let threshold = $('#header').height();
 
+$('#fixed_head').hide();
+
 $(window).scroll(function() {
     if ( $(window).scrollTop() > threshold ) {
         if ($('#fixed_head').is(':hidden'))
