@@ -1,4 +1,4 @@
-{% macro header(path='') -%}
+{% macro header(now_pos='', path='') -%}
 
 <div id="fixed_head">
         <div id="toggle">
@@ -39,7 +39,7 @@
             <a href="./{{path}}team"> [ 關於我們 ] </a>
         </div>
         <div id="header_text">
-            <p>首頁</p>
+            <p>首頁{{now_pos}}</p>
         </div>
     </div>
 
