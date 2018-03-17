@@ -28,16 +28,15 @@
     width: 65%;
     height: 100%;
     top: 0;
-    left: 35%;
+    left: 40%;
     justify-content: center;
     align-items: center;
 }
 
 #evolution img {
     opacity: 0;
-    height: 300px;
+    width: 350px;
     position: absolute;
-    top: cal(50% - 150px);
 }
 
 #history {
@@ -48,6 +47,7 @@
 .quest {
     margin: 50px;
     height: 250px;
+    opacity: 1;
 }
 
 .quest .img_container {
@@ -70,6 +70,7 @@
     text-align: left;
     flex-wrap: nowrap;
     flex-direction: column;
+    padding-right: 35%;
 }
 
 .divider {

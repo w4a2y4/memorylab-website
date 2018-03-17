@@ -10,8 +10,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
     <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
     <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common_phone.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character.css') }}">
-    <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character_phone.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:600px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:600px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/character_phone.css') }}">
     <title>記憶實驗所 - 人格重曝</title>
 </head>
 <body>
@@ -75,6 +75,16 @@
             new ScrollMagic.Scene(
                     {triggerElement: "#quest{{e.end_question}}", duration: du})
                     .setTween("#ev{{loop.index}}", {opacity: "0"})
+                    .addTo(controller);
+        {%endfor%}
+
+        {%for q in questions%}
+            // fade in
+            console.log({{loop.index}});
+            var du = 2.5 * $('#quest{{loop.index - 1}}').height();
+            new ScrollMagic.Scene(
+                    {triggerElement: "#quest{{loop.index - 1}}", duration: du})
+                    .setTween("#quest{{loop.index}}", {opacity: "1"})
                     .addTo(controller);
         {%endfor%}
     </script>
