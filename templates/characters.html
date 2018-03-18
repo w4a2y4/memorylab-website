@@ -41,8 +41,12 @@
         {% for user in users%}
         <div class="user" 
              onclick="window.location='character/{{user.id}}';">
-            <div class="profile" style="background-image:url()">
-                 <h3>{{user.name}}</h3>
+            <div class="profile">
+                {% for e in user.evolutions %}
+                    {% if loop.last %}
+                        <img src="./../static/evolutions/{{e.path}}">
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
         {% endfor %}

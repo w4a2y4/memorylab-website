@@ -60,6 +60,9 @@ class Evolution(db.Model):
     def __repr__(self):
         return '<Evolution %r %r>' % ( self.user_id, self.path)
 
+    def __len__(self):
+        return len(self.coordinate_row)
+
 
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)

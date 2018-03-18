@@ -28,4 +28,12 @@
     background: #D9E0E7;
     height: 180px;
     width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.profile img {
+    max-height: 100%;
+    max-width: 100%;
 }
