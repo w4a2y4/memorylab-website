@@ -5,7 +5,7 @@ from flask import Flask, Response, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_basicauth import BasicAuth
 from flask_admin import Admin, BaseView, expose, form
-from flask_admin.contrib.sqla import ModelView
+from flask_admin.contrib.sqla import ModelView, filters
 from werkzeug.exceptions import HTTPException
 from sqlalchemy.event import listens_for
 from jinja2 import Markup
@@ -71,7 +71,10 @@ def del_quest(mapper, connection, target):
         except OSError:
             pass
 
-class EvolutionView(ModelView):
+class EvolutionAdmin(ModelView):
+
+    column_filters = ('user',)
+
     def _list_thumbnail(view, context, model, name):
         if not model.path:
             return ''
@@ -85,7 +88,10 @@ class EvolutionView(ModelView):
                                       thumbnail_size=(100, 100, True))
     }
 
-class QuestionView(ModelView):
+class QuestionAdmin(ModelView):
+
+    column_filters = ('user',)
+
     def _list_thumbnail(view, context, model, name):
         if not model.path:
             return ''
@@ -111,8 +117,8 @@ class ModelView(ModelView):
 
 admin = Admin(app)
 admin.add_view(ModelView(User, db.session))
-admin.add_view(QuestionView(Question, db.session))
-admin.add_view(EvolutionView(Evolution, db.session))
+admin.add_view(QuestionAdmin(Question, db.session))
+admin.add_view(EvolutionAdmin(Evolution, db.session))
 admin.add_view(ModelView(Team, db.session))
 
 # Import the views module

@@ -8,14 +8,9 @@ class User(db.Model):
     name = db.Column(db.String(80), unique=True, default='')
     profile = db.Column(db.String(200), default='')
     description = db.Column(db.String(2000), default='')
-    init = db.relationship(
-        'Question',
-        backref='user',
-        lazy='dynamic'
-    )
     questions = db.relationship(
         'Question',
-        backref='user_init',
+        backref='user',
         lazy='dynamic'
     )
     evolutions = db.relationship(
