@@ -32,7 +32,6 @@ def character(user_id):
     name = user.name
     description = user.description
     profile = user.profile
-    init = user.init.all()
     questions = user.questions.all()
     evolutions = user.evolutions.all()
 
@@ -41,7 +40,6 @@ def character(user_id):
                            name=name,
                            description=description,
                            profile=profile,
-                           init=init,
                            questions=questions,
                            evolutions=evolutions)
 

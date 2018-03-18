@@ -6,8 +6,8 @@ db = SQLAlchemy()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, default='')
-    profile = db.Column(db.String(200), default='')
-    description = db.Column(db.String(2000), default='')
+    profile = db.Column(db.Unicode(128))
+    description = db.Column(db.Text, default='')
     questions = db.relationship(
         'Question',
         backref='user',
@@ -28,7 +28,7 @@ class User(db.Model):
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(80), default='')
+    description = db.Column(db.Text, default='')
     path = db.Column(db.Unicode(128))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

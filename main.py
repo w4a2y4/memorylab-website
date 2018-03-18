@@ -32,6 +32,8 @@ class AuthException(HTTPException):
 
 evo_path = op.join(op.dirname(__file__), 'static/evolutions')
 quest_path = op.join(op.dirname(__file__), 'static/questions')
+prof_path = op.join(op.dirname(__file__), 'static/profile')
+
 try:
     os.mkdir(evo_path)
 except OSError:
@@ -71,7 +73,52 @@ def del_quest(mapper, connection, target):
         except OSError:
             pass
 
-class EvolutionAdmin(ModelView):
+@listens_for(User, 'after_delete')
+def del_prof(mapper, connection, target):
+    if target.path:
+        try:
+            os.remove(op.join(prof_path, target.path))
+        except OSError:
+            pass
+
+        # Delete thumbnail
+        try:
+            os.remove(op.join(prof_path,
+                              form.thumbgen_filename(target.path)))
+        except OSError:
+            pass
+
+# Override Flask-admin's modelview to support basicauth
+class AdminView(ModelView):
+    column_display_pk = True
+    def is_accessible(self):
+        if not basic_auth.authenticate():
+            raise AuthException('Not authenticated.')
+        else:
+            return True
+    def inaccessible_callback(self, name, **kwargs):
+        return redirect(basic_auth.challenge())
+
+
+class UserAdmin(AdminView):
+
+    form_widget_args = {'description' : {'rows' : 10}}
+
+    def _list_thumbnail(view, context, model, name):
+        if not model.profile:
+            return ''
+        fname = 'profile/' + form.thumbgen_filename(model.profile)
+        return Markup('<img src="%s">' % url_for('static',
+                                                 filename=fname))
+    column_formatters = {'profile': _list_thumbnail}
+    form_extra_fields = {
+        'profile': form.ImageUploadField('Evolution',
+                                      base_path=prof_path,
+                                      thumbnail_size=(100, 100, True))
+    }
+
+
+class EvolutionAdmin(AdminView):
 
     column_filters = ('user',)
 
@@ -88,7 +135,7 @@ class EvolutionAdmin(ModelView):
                                       thumbnail_size=(100, 100, True))
     }
 
-class QuestionAdmin(ModelView):
+class QuestionAdmin(AdminView):
 
     column_filters = ('user',)
 
@@ -105,21 +152,11 @@ class QuestionAdmin(ModelView):
                                       thumbnail_size=(100, 100, True))
     }
 
-# Override Flask-admin's modelview to support basicauth
-class ModelView(ModelView):
-    def is_accessible(self):
-        if not basic_auth.authenticate():
-            raise AuthException('Not authenticated.')
-        else:
-            return True
-    def inaccessible_callback(self, name, **kwargs):
-        return redirect(basic_auth.challenge())
-
-admin = Admin(app)
-admin.add_view(ModelView(User, db.session))
+admin = Admin(app, template_mode='bootstrap3')
+admin.add_view(UserAdmin(User, db.session))
 admin.add_view(QuestionAdmin(Question, db.session))
 admin.add_view(EvolutionAdmin(Evolution, db.session))
-admin.add_view(ModelView(Team, db.session))
+admin.add_view(AdminView(Team, db.session))
 
 # Import the views module
 from views import *
