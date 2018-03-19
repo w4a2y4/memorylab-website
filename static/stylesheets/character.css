@@ -8,6 +8,7 @@
 #profile {
     height: 380px;
     width: 380px;
+    overflow: hidden;
     background-color: #D9E0E7;
     float: left;
     margin-right: 20px;

@@ -8,6 +8,7 @@
 #profile {
     height: 80vw;
     width: 80vw;
+    overflow: hidden;
     background-color: #D9E0E7;
     margin: auto;
 }
