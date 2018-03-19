@@ -17,9 +17,8 @@
     {{ header.header(' > 關於我們') }}
     
     <h2>• 團隊介紹 •</h2>
-    <div class="line"></div>
     <div class="buttons">
-        <button type="button" onclick="document.getElementById('boss').style.display='inline';
+        <button class="nowpos" type="button" onclick="document.getElementById('boss').style.display='inline';
         document.getElementById('it').style.display='inline';
         document.getElementById('twoD').style.display='inline';
         document.getElementById('threeD').style.display='inline';
@@ -127,9 +126,8 @@
         document.getElementById('ui').style.display='none';
         document.getElementById('elect').style.display='none';
         document.getElementById('out').style.display='inline';">
-        對外接洽及體驗設計</button><br>
+        對外接洽及體驗設計</button>
     </div>
-    <div class="line"></div>
 
     <div id="memintro">
         <div id="boss">
@@ -254,6 +252,12 @@
     
 
     <script src="{{ url_for('static', filename = 'js/common.js') }}"></script>
+    <script type="text/javascript">
+        $(document).on('click', 'button', (function(e) {
+            $(':button').removeClass('nowpos');
+            $(this).addClass('nowpos');
+        }));
+    </script>
 
 </body>
 </html>

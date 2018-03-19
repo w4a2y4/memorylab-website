@@ -1,18 +1,35 @@
-button {
-    text-decoration: none;
-    border: none;
-    color:rgb(181,181,182);
-    display: inline;
-    text-align: center;
-    background-color: black;
-    cursor: pointer;
+.buttons {
+    display: flex;
+    margin: auto;
+    align-items: flex-end;
+    justify-content: center;
+    max-width: 80vw;
+    margin-bottom: 30px;
 }
 
-.buttons button {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 2px;
-    margin-bottom: 2px;
+button {
+    text-decoration: none;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    background: #1F2020;
+    color: rgb(181,181,182);
+    display: inline;
+    text-align: center;
+    cursor: pointer;
+    font-family: "柔源l";
+    font-size: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.nowpos {
+    border-bottom-style: none;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-top-style: solid;
+    color: #white;
 }
 
 h2{
@@ -20,7 +37,7 @@ h2{
 }
 
 h3 {
-    color:#9DC394;
+    color: #9DC394;
     letter-spacing: 3px;
     font-family: "柔源M";
     padding-top: 30px;
@@ -73,16 +90,6 @@ h3 {
     text-align: left;
     height: 150px;
     margin-left: 200px;
-}
-
-.line{
-    height:1px;
-    width:900px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background-color: rgb(181,181,182);
 }
 
 #footer {
