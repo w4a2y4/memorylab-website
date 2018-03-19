@@ -5,12 +5,12 @@
 #memintro{
     margin-left: auto;
     margin-right: auto;
-    width:80vw;
+    max-width:80vw;
 }
 
 .group {
     width: 100%;
-    display: flex;
+    display: inline-block;
     align-items: flex-start;
     justify-content: space-around;
 }
