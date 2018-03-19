@@ -137,6 +137,7 @@ p {
 }
 
 #menu {
+    z-index: 11;
     display: none;
     position: fixed;
     background-color: #1F2020;
