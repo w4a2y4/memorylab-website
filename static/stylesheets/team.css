@@ -1,4 +1,4 @@
-button{
+button {
     text-decoration: none;
     border: none;
     color:rgb(181,181,182);
@@ -7,15 +7,18 @@ button{
     background-color: black;
     cursor: pointer;
 }
-.buttons button{
+
+.buttons button {
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 2px;
     margin-bottom: 2px;
 }
+
 h2{
     margin-bottom: 50px;
 }
+
 #memintro{
     margin-top:50px;
     margin-left: auto;
@@ -23,14 +26,15 @@ h2{
     width:60vw;
 }
 
-#block{
+.block{
     margin-bottom: 10px;
 }
 #memintro div{
     float: left;
     color:#9DC394;
 }
-#title{
+
+.title{
     text-align: center;
     margin-top:20px;
     margin-bottom: 20px; 
@@ -38,29 +42,33 @@ h2{
     margin-right:auto;
     width:60vw;
 }
-#memintro div div div{
+
+.block {
     color:white;
     text-align: left;
 }   
 
-#memintro div div div img{
+.one img{
     max-height: 150px;
     max-width: 15vw;
     display:block;
     margin: auto;
 }
-#one{
+
+.one{
     height:150px;
     width:15vw;
     box-shadow: 0px 0px 0px 1px #9DC394;
     /* border: 1px #9DC394 solid; */
 }
-#two{
+
+.two{
     height: 150px;
     width:45vw;
     padding-left: 20px;
     padding-bottom: 5px;
 }
+
 .line{
     height:1px;
     width:900px;
@@ -70,6 +78,7 @@ h2{
     margin-bottom: 5px;
     background-color: rgb(181,181,182);
 }
+
 #footer {
     width: 100%;
     height: 300px;
