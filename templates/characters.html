@@ -39,8 +39,8 @@
 
     <div id="characters">
         {% for user in users%}
-        <div class="user" 
-             onclick="window.location='character/{{user.id}}';">
+        <div class="user">
+            <a href="character/{{user.id}}">
             <div class="profile">
                 {% for e in user.evolutions %}
                     {% if loop.last %}
@@ -48,6 +48,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
+            </a>
         </div>
         {% endfor %}
     </div>
