@@ -7,8 +7,8 @@
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
     <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common_phone.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/team.css') }}">
-    <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/team_phone.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:470px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/team.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:470px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/team_phone.css') }}">
     <title>記憶實驗所 - 團隊介紹</title>
 </head>
 <body>
@@ -17,9 +17,8 @@
     {{ header.header(' > 關於我們') }}
     
     <h2>• 團隊介紹 •</h2>
-    <div class="line"></div>
     <div class="buttons">
-        <button type="button" onclick="document.getElementById('boss').style.display='inline';
+        <button class="nowpos" type="button" onclick="document.getElementById('boss').style.display='inline';
         document.getElementById('it').style.display='inline';
         document.getElementById('twoD').style.display='inline';
         document.getElementById('threeD').style.display='inline';
@@ -127,112 +126,156 @@
         document.getElementById('ui').style.display='none';
         document.getElementById('elect').style.display='none';
         document.getElementById('out').style.display='inline';">
-        對外接洽及體驗設計</button><br>
+        對外接洽及體驗設計</button>
     </div>
-    <div class="line"></div>
 
     <div id="memintro">
-        <!-- <div id="test">
-            <div id="title">[ 測試 ]<br></div> 
-            <div id="block">
-                <div id="one"><img src=https://i.imgur.com/SUXTRSG.png></div>
-                <div id="two"><div id="name">阿哈哈</div><br><div id="text">阿哈哈西西。12313213213吧啦吧啦淅瀝淅瀝<br></div></div>
-            </div>
-            <div id="block">
-                <div id="one"><img src=https://i.imgur.com/SUXTRSG.png></div>
-                <div id="two"><div id="name">阿哈哈</div><br><div id="text">阿哈哈西西。12313213213吧啦吧啦淅瀝淅瀝<br></div></div>
-            </div>
-            <div id="block">
-                <div id="one"><img src=https://i.imgur.com/SUXTRSG.png></div>
-                <div id="two"><div id="name">阿哈哈</div><br><div id="text">阿哈哈西西。12313213213吧啦吧啦淅瀝淅瀝<br></div></div>
-            </div>
-        </div> -->
         <div id="boss">
-            <div id="title">[ 藝術總監 ]<br></div>
+            <div class="title">[ 藝術總監 ]<br></div>
+            <div class="group">
             {% for person in boss %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="it">
-            <div id="title">[ 工程師 ]<br></div>
+            <div class="title">[ 工程師 ]<br></div>
+            <div class="group">
             {% for person in it %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="twoD">
-            <div id="title">[ 平面繪畫 ]<br></div>
+            <div class="title">[ 平面繪畫 ]<br></div>
+            <div class="group">
             {% for person in twoD %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="threeD">
-            <div id="title">[ 裝置藝術 ]<br></div>
+            <div class="title">[ 裝置藝術 ]<br></div>
+            <div class="group">
             {% for person in threeD %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="anim">
-            <div id=title>[ 動畫 ]<br></div>
+            <div class="title">[ 動畫 ]<br></div>
+            <div class="group">
             {% for person in anim %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="ui">
-            <div id="title">[ 網頁UI ]<br></div>
+            <div class="title">[ 網頁UI ]<br></div>
+            <div class="group">
             {% for person in ui %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="acent">
-            <div id="title">[ 調香師 ]<br></div>
+            <div class="title">[ 調香師 ]<br></div>
+            <div class="group">
             {% for person in acent %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="elect">
-            <div id="title">[ 電路 ]<br></div>
+            <div class="title">[ 電路 ]<br></div>
+            <div class="group">
             {% for person in elect %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="out">
-            <div id="title">[ 對外接洽及體驗設計 ]<br></div>
+            <div class="title">[ 對外接洽及體驗設計 ]<br></div>
+            <div class="group">
             {% for person in out %}
-                <div id="block">
-                    <div id="one"><img src={{person.picture_url}}></div>
-                    <div id="two"><div id="name">{{person.name}}</div><br><div id="text">{{person.text}}<br></div></div>
+                <div class="block">
+                    <div class="one">
+                        <img src={{person.picture_url}}></div>
+                    <div class="two">
+                        <h3 class="name">{{person.name}}</h3>
+                        <p class="text">{{person.text}}</p>
+                    </div>
                 </div>
             {% endfor %}
+            </div>
         </div>
         <div id="footer"></div>
     </div>
     
 
     <script src="{{ url_for('static', filename = 'js/common.js') }}"></script>
+    <script type="text/javascript">
+        $(document).on('click', 'button', (function(e) {
+            $(':button').removeClass('nowpos');
+            $(this).addClass('nowpos');
+        }));
+    </script>
 
 </body>
 </html>
