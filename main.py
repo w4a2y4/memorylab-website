@@ -1,11 +1,12 @@
 import os
 import os.path as op
 
-from flask import Flask, Response, redirect, url_for
+from flask import Flask, Response, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_basicauth import BasicAuth
 from flask_admin import Admin, BaseView, expose, form
 from flask_admin.contrib.sqla import ModelView, filters
+from flask_apscheduler import APScheduler  
 from werkzeug.exceptions import HTTPException
 from sqlalchemy.event import listens_for
 from jinja2 import Markup
@@ -21,7 +22,7 @@ app.config['BASIC_AUTH_PASSWORD'] = '0000'
 basic_auth = BasicAuth(app)
 
 # add Admin modelview
-from models import db, User, Question, Team, Evolution
+from models import db, User, Question, Team, Evolution, TestUser, TestAnswer
 
 class AuthException(HTTPException):
     def __init__(self, message):
@@ -152,11 +153,27 @@ class QuestionAdmin(AdminView):
                                       thumbnail_size=(100, 100, True))
     }
 
+class TestAnswerAdmin(AdminView):
+    def _list_thumbnail(view, context, model, name):
+        if not model.path:
+            return ''
+        fname = 'test_answer/' + form.thumbgen_filename(model.path)
+        return Markup('<img src="%s">' % url_for('static',
+                                                 filename=fname))
+    column_formatters = {'path': _list_thumbnail}
+    form_extra_fields = {
+        'path': form.ImageUploadField('TestAnswer',
+                                      base_path=quest_path,
+                                      thumbnail_size=(100, 100, True))
+    }
+
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UserAdmin(User, db.session))
 admin.add_view(QuestionAdmin(Question, db.session))
 admin.add_view(EvolutionAdmin(Evolution, db.session))
 admin.add_view(AdminView(Team, db.session))
+admin.add_view(AdminView(TestUser, db.session))
+admin.add_view(TestAnswerAdmin(TestAnswer, db.session))
 
 # Import the views module
 from views import *
@@ -165,6 +182,87 @@ db.app = app
 db.init_app(app)
 db.create_all()
 
+
+from messenger_bot import send_message, send_image
+import logging
+import json
+log = logging.getLogger('apscheduler.executors.default')
+log.setLevel(logging.INFO)  # DEBUG
+fmt = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+h = logging.StreamHandler()
+h.setFormatter(fmt)
+log.addHandler(h)
+
+HOST = "https://host.io"
+
+# Start at 12:30 
+# @sched.scheduled_job('cron', hour='12', minute='30')
+def send_all_task():
+    # log("====send all====")
+    testUsers = TestUser.query.all()
+    for u in testUsers:
+        send_message(u.fb_id, "嗨！這是某個人的人格：")
+        seq = json.loads(u.sequence)
+        user = User.query.get(seq[u.test_times])
+        questions = Question.query.filter_by(user=user)
+        for q in questions:
+            send_image(u.fb_id, HOST + "/static/questions/" + q.path)
+        send_message(u.fb_id, "那麼，讓我來問你一個問題吧：" + q[random.randrange(0,q.count())].description)
+        
+
+# Notice at 19:30 
+# @sched.scheduled_job('cron', hour='19', minute='30')
+def notice_for_tester():
+    # log("====notice====")
+    testUser = TestUser.query.all()
+    for u in testUser:
+        send_message(u.fb_id, "快來回答吧。")
+
+# End at 24:30 (00:30)
+# @sched.scheduled_job('cron', hour='00', minute='30')
+def end_for_test():
+    # log("====notice====")
+    testUser = TestUser.query.all()
+    for u in testUser:
+        u.tested = False
+        u.test_times += 1
+        db.session.commit()
+
+class Config(object):  
+    JOBS = [{  
+               'id':'job1',  
+               'func':'main:send_all_task',  
+               'args': '',  
+               'trigger': {  
+                    'type': 'cron',  
+                    'hour':'12',  
+                    'minute':'30',  
+                }
+            }, {  
+               'id':'job2',  
+               'func':'main:notice_for_tester',  
+               'args': '',  
+               'trigger': {  
+                    'type': 'cron',  
+                    'hour':'19',  
+                    'minute':'30',    
+                }
+            },  {  
+               'id':'job3',  
+               'func':'main:end_for_test',  
+               'args': '',  
+               'trigger': {  
+                    'type': 'cron',  
+                    'hour':'00',  
+                    'minute':'30',    
+                }
+            }]  
+    SCHEDULER_API_ENABLED = True
+
 if __name__ == '__main__':
+    scheduler = APScheduler()
+    app.config.from_object(Config()) 
+    scheduler.init_app(app)  
+    scheduler.start()
     app.run()
 
