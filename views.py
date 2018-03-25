@@ -1,6 +1,7 @@
 from flask import render_template
 from main import app
 from models import User, Question, Team
+import urllib.request
 
 # home page
 @app.route('/')
@@ -65,3 +66,36 @@ def team():
     out = Team.query.filter_by(type_num = 8).all()
     
     return render_template('team.html',teams=teams,boss=boss,it=it,twoD=twoD,threeD=threeD,anim=anim,acent=acent,ui=ui,elect=elect,out=out)
+
+
+@app.route('/chatbot', methods=['GET'])
+def verify():
+    # when the endpoint is registered as a webhook, it must echo back
+    # the 'hub.challenge' value it receives in the query arguments
+    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
+        if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
+            return "Verification token mismatch", 403
+        return request.args["hub.challenge"], 200
+    return "I'm chatbot. owo)/", 200
+
+
+@app.route('/chatbot', methods=['POST'])
+def webhook():
+    # endpoint for processing incoming messaging events
+    data = request.get_json()
+    log(data)  # you may not want to log every incoming message in production, but it's good for testing
+    for entry in data["entry"]:
+        for messaging_event in entry["messaging"]:
+            if messaging_event.get("message"):
+                message = messaging_event["message"]
+                sender_id = messaging_event["sender"]["id"]
+                recipient_id = messaging_event["recipient"]["id"]
+                if message.get('attachments'):
+                    for attachments in message['attachments']:
+                        urllib.request.urlretrieve(attachments['payload']['url'], "static/test_answer/")
+                        send_message(sender_id, "收到你的答案了～")
+                else:
+                    message_text = message["text"]
+                    send_message(sender_id, "嗨！這裡是記憶實驗所")
+                    # send_message(sender_id, "喵。")
+    return "ok", 200

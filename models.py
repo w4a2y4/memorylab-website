@@ -1,7 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
 db = SQLAlchemy()
+
+import random
+import json
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -27,11 +29,12 @@ class User(db.Model):
 
 
 class Question(db.Model):
+    __tablename__ = "question"
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.Text, default='')
     path = db.Column(db.Unicode(128))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
+    test_answer = db.relationship("TestAnswer", backref="question")
     def __init__(self, description='', path=''):
         self.description = description
         self.path = path
@@ -74,3 +77,32 @@ class Team(db.Model):
 
     def __repr__(self):
         return '<Team %r %r %r %r>' % (self.name ,self.text,self.picture_url,self.type_num)
+
+class TestUser(db.Model):
+    __tablename__ = 'testuser'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), default='')
+    fb_id = db.Column(db.String(50), unique=True)
+    tested = db.Column(db.Boolean, default=False)
+    sequence = db.Column(db.String(1024), default='')
+    test_times = db.Column(db.Integer, default = 0)
+    test_answer = db.relationship("TestAnswer", backref="testuser")
+    def __init__(self, name = '', fb_id=''):
+        self.name = name
+        self.fb_id = fb_id
+        id_list = [i[0] for i in db.session.query(User.id).distinct()]
+        random.shuffle(id_list)
+        self.sequence = json.dumps(id_list)
+    def __repr__(self):
+        return '<TestUser %r>' % self.fb_id
+
+class TestAnswer(db.Model):
+    __tablename__ = 'testanswer'
+    id = db.Column(db.Integer, primary_key=True)
+    test_user_id = db.Column(db.Integer, db.ForeignKey('testuser.id'))
+    question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
+    path = db.Column(db.Unicode(128))
+    def __init__(self, path=''):
+        self.path=path
+    def __repr__(self):
+        return '<TestAnswer %r %r >' % (self.question_id ,self.test_user_id)
