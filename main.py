@@ -22,7 +22,7 @@ app.config['BASIC_AUTH_PASSWORD'] = '0000'
 basic_auth = BasicAuth(app)
 
 # add Admin modelview
-from models import db, User, Question, Team, Evolution, TestUser, TestAnswer
+from models import db, User, Question, Team, Evolution, TestUser
 
 class AuthException(HTTPException):
     def __init__(self, message):
@@ -153,19 +153,6 @@ class QuestionAdmin(AdminView):
                                       thumbnail_size=(100, 100, True))
     }
 
-class TestAnswerAdmin(AdminView):
-    def _list_thumbnail(view, context, model, name):
-        if not model.path:
-            return ''
-        fname = 'test_answer/' + form.thumbgen_filename(model.path)
-        return Markup('<img src="%s">' % url_for('static',
-                                                 filename=fname))
-    column_formatters = {'path': _list_thumbnail}
-    form_extra_fields = {
-        'path': form.ImageUploadField('TestAnswer',
-                                      base_path=quest_path,
-                                      thumbnail_size=(100, 100, True))
-    }
 
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UserAdmin(User, db.session))
@@ -173,7 +160,6 @@ admin.add_view(QuestionAdmin(Question, db.session))
 admin.add_view(EvolutionAdmin(Evolution, db.session))
 admin.add_view(AdminView(Team, db.session))
 admin.add_view(AdminView(TestUser, db.session))
-admin.add_view(TestAnswerAdmin(TestAnswer, db.session))
 
 # Import the views module
 from views import *
@@ -193,7 +179,9 @@ h = logging.StreamHandler()
 h.setFormatter(fmt)
 log.addHandler(h)
 
+# to change
 HOST = "https://host.io"
+
 
 # Start at 12:30 
 # @sched.scheduled_job('cron', hour='12', minute='30')
@@ -204,10 +192,18 @@ def send_all_task():
         send_message(u.fb_id, "嗨！這是某個人的人格：")
         seq = json.loads(u.sequence)
         user = User.query.get(seq[u.test_times])
-        questions = Question.query.filter_by(user=user)
+        q_filter = Question.query.filter(Question.user==user, Question.path != '')
+        questions = random.sample(list(q_filter), 5)
         for q in questions:
             send_image(u.fb_id, HOST + "/static/questions/" + q.path)
-        send_message(u.fb_id, "那麼，讓我來問你一個問題吧：" + q[random.randrange(0,q.count())].description)
+        
+        empty_questions = Question.query.filter_by(path='')
+        e_question = empty_questions[random.randrange(0,empty_questions.count())]
+        e_question.path = "Answering..."
+        text = e_question.description
+        u.answering = e_question.id # Set the question testuser is answering
+        send_message(u.fb_id, "那麼，讓我來問你一個問題吧：" + text)
+        db.session.commit()
         
 
 # Notice at 19:30 
@@ -216,7 +212,7 @@ def notice_for_tester():
     # log("====notice====")
     testUser = TestUser.query.all()
     for u in testUser:
-        send_message(u.fb_id, "快來回答吧。")
+        send_message(u.fb_id, "快來回答吧！")
 
 # End at 24:30 (00:30)
 # @sched.scheduled_job('cron', hour='00', minute='30')
