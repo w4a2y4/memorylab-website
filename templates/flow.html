@@ -16,7 +16,9 @@
     {% import 'header.html' as header %}
     {{ header.header(' > 實驗流程') }}
 
-    <img src="./static/img/flow.png" id="flow">
+    {% for i in "12345678" %}
+        <img src="./static/img/{{i}}.jpg" id="flow">
+    {% endfor%}
 
     <script src="{{ url_for('static', filename = 'js/common.js') }}"></script>
 

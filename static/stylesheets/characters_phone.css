@@ -24,7 +24,8 @@
 }
 
 .profile {
-    background: #D9E0E7;
+    /* background: #D9E0E7; */
+    border:white 8px solid;
     height: 100%;
     width: 100%;
     display: flex;
