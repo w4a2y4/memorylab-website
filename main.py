@@ -192,7 +192,7 @@ def send_all_task():
         send_message(u.fb_id, "嗨！這是某個人的人格：")
         seq = json.loads(u.sequence)
         user = User.query.get(seq[u.test_times])
-        q_filter = Question.query.filter(Question.user==user, Question.path != '')
+        q_filter = Question.query.filter(Question.user==user, Question.path != '').order_by("id desc").limit(5).all()
         questions = random.sample(list(q_filter), 5)
         for q in questions:
             send_image(u.fb_id, HOST + "/static/questions/" + q.path)
@@ -210,7 +210,7 @@ def send_all_task():
 # @sched.scheduled_job('cron', hour='19', minute='30')
 def notice_for_tester():
     # log("====notice====")
-    testUser = TestUser.query.all()
+    testUser = TestUser.query.filter_by(tested=False)
     for u in testUser:
         send_message(u.fb_id, "快來回答吧！")
 

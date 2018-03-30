@@ -25,7 +25,7 @@ def characters():
     users = User.query.all()
 
     return render_template('characters.html',
-                           ㄚusers=users)
+                           users=users)
 
 
 # each character
@@ -97,14 +97,16 @@ def webhook():
                 recipient_id = messaging_event["recipient"]["id"]
                 u = TestUser.query.filter_by(fb_id=sender_id).first()
                 if message.get('attachments'):
-                    if u.tested == False: # haven't answer
+                    if u.tested == False:  # haven't answer
                         send_message(sender_id, "收到你的答案了～")
                         u.tested = True
                         for attachments in message['attachments']:
                             url = attachments['payload']['url']
-                            urllib.request.urlretrieve(url, "static/questions/")
+                            urllib.request.urlretrieve(
+                                url, "static/questions/")
                             sequence = json.loads(u.sequence)
-                            q = Question.query.filter_by(id=u.answering).first()
+                            q = Question.query.filter_by(
+                                id=u.answering).first()
                             q.path = url[url.rfind("/")+1:url.find("?")]
                     else:
                         send_message(sender_id, "欸欸，你已經回答過囉")
