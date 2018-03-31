@@ -41,9 +41,8 @@ class Link(db.Model):
     __tablename__ = "link"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), default='')
-    url = db.Column(db.String(80), default='#')
+    url = db.Column(db.String(300), default='#')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    # test_answer = db.relationship("TestAnswer", backref="question")
     def __init__(self, title='', url='#'):
         self.title = title
         self.url = url
