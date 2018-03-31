@@ -1,9 +1,12 @@
 from flask import render_template
 from main import app
-from models import User, Question, Team
+from models import db, User, Question, Team, TestUser
 import urllib.request
+import json
 
 # home page
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -22,7 +25,7 @@ def characters():
     users = User.query.all()
 
     return render_template('characters.html',
-                            users=users)
+                           users=users)
 
 
 # each character
@@ -55,23 +58,25 @@ def team():
     ui+2D=12 3D+accent=13
     """
     teams = Team.query.all()
-    boss = Team.query.filter_by(type_num = 0).all()
+    boss = Team.query.filter_by(type_num=0).all()
     it = Team.query.filter((Team.type_num == 1) | (Team.type_num == 10)).all()
-    twoD = Team.query.filter((Team.type_num == 2) | (Team.type_num ==9 ) | (Team.type_num == 12)).all()
-    threeD = Team.query.filter((Team.type_num == 3) | (Team.type_num == 9) | (Team.type_num == 11) | (Team.type_num == 13)).all()
-    anim = Team.query.filter_by(type_num = 4).all()
-    acent = Team.query.filter((Team.type_num == 5) | (Team.type_num == 10) | (Team.type_num == 13)).all()
-    ui = Team.query.filter((Team.type_num == 6) | (Team.type_num == 11) | (Team.type_num == 12)).all()
-    elect = Team.query.filter_by(type_num = 7).all()
-    out = Team.query.filter_by(type_num = 8).all()
-    
-    return render_template('team.html',teams=teams,boss=boss,it=it,twoD=twoD,threeD=threeD,anim=anim,acent=acent,ui=ui,elect=elect,out=out)
+    twoD = Team.query.filter((Team.type_num == 2) | (
+        Team.type_num == 9) | (Team.type_num == 12)).all()
+    threeD = Team.query.filter((Team.type_num == 3) | (Team.type_num == 9) | (
+        Team.type_num == 11) | (Team.type_num == 13)).all()
+    anim = Team.query.filter_by(type_num=4).all()
+    acent = Team.query.filter((Team.type_num == 5) | (
+        Team.type_num == 10) | (Team.type_num == 13)).all()
+    ui = Team.query.filter((Team.type_num == 6) | (
+        Team.type_num == 11) | (Team.type_num == 12)).all()
+    elect = Team.query.filter_by(type_num=7).all()
+    out = Team.query.filter_by(type_num=8).all()
+
+    return render_template('team.html', teams=teams, boss=boss, it=it, twoD=twoD, threeD=threeD, anim=anim, acent=acent, ui=ui, elect=elect, out=out)
 
 
 @app.route('/chatbot', methods=['GET'])
 def verify():
-    # when the endpoint is registered as a webhook, it must echo back
-    # the 'hub.challenge' value it receives in the query arguments
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
@@ -83,17 +88,29 @@ def verify():
 def webhook():
     # endpoint for processing incoming messaging events
     data = request.get_json()
-    log(data)  # you may not want to log every incoming message in production, but it's good for testing
+    # log(data)
     for entry in data["entry"]:
         for messaging_event in entry["messaging"]:
             if messaging_event.get("message"):
                 message = messaging_event["message"]
                 sender_id = messaging_event["sender"]["id"]
                 recipient_id = messaging_event["recipient"]["id"]
+                u = TestUser.query.filter_by(fb_id=sender_id).first()
                 if message.get('attachments'):
-                    for attachments in message['attachments']:
-                        urllib.request.urlretrieve(attachments['payload']['url'], "static/test_answer/")
+                    if u.tested == False:  # haven't answer
                         send_message(sender_id, "收到你的答案了～")
+                        u.tested = True
+                        for attachments in message['attachments']:
+                            url = attachments['payload']['url']
+                            urllib.request.urlretrieve(
+                                url, "static/questions/")
+                            sequence = json.loads(u.sequence)
+                            q = Question.query.filter_by(
+                                id=u.answering).first()
+                            q.path = url[url.rfind("/")+1:url.find("?")]
+                    else:
+                        send_message(sender_id, "欸欸，你已經回答過囉")
+                    db.session.commit()
                 else:
                     message_text = message["text"]
                     send_message(sender_id, "嗨！這裡是記憶實驗所")

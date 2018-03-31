@@ -5,6 +5,10 @@ db = SQLAlchemy()
 import random
 import json
 
+def shift(seq, n=0):
+    a = n % len(seq)
+    return seq[-a:] + seq[:-a]
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, default='')
@@ -34,7 +38,7 @@ class Question(db.Model):
     description = db.Column(db.Text, default='')
     path = db.Column(db.Unicode(128))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    test_answer = db.relationship("TestAnswer", backref="question")
+    # test_answer = db.relationship("TestAnswer", backref="question")
     def __init__(self, description='', path=''):
         self.description = description
         self.path = path
@@ -85,24 +89,15 @@ class TestUser(db.Model):
     fb_id = db.Column(db.String(50), unique=True)
     tested = db.Column(db.Boolean, default=False)
     sequence = db.Column(db.String(1024), default='')
+    answering = db.Column(db.Integer, default = None)
     test_times = db.Column(db.Integer, default = 0)
-    test_answer = db.relationship("TestAnswer", backref="testuser")
+    # test_answer = db.relationship("TestAnswer", backref="testuser")
     def __init__(self, name = '', fb_id=''):
         self.name = name
         self.fb_id = fb_id
         id_list = [i[0] for i in db.session.query(User.id).distinct()]
-        random.shuffle(id_list)
+        count = db.session.query(TestUser).count()
+        shift(id_list, count)
         self.sequence = json.dumps(id_list)
     def __repr__(self):
         return '<TestUser %r>' % self.fb_id
-
-class TestAnswer(db.Model):
-    __tablename__ = 'testanswer'
-    id = db.Column(db.Integer, primary_key=True)
-    test_user_id = db.Column(db.Integer, db.ForeignKey('testuser.id'))
-    question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
-    path = db.Column(db.Unicode(128))
-    def __init__(self, path=''):
-        self.path=path
-    def __repr__(self):
-        return '<TestAnswer %r %r >' % (self.question_id ,self.test_user_id)
