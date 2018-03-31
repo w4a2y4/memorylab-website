@@ -36,7 +36,7 @@ def character(user_id):
     name = user.name
     description = user.description
     profile = user.profile
-    questions = user.questions.all()
+    questions = user.questions.filter(Question.path != '')
     evolutions = user.evolutions.all()
     settings = Settings.query.get_or_404(1)
 
