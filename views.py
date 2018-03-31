@@ -21,9 +21,11 @@ def flow():
 def characters():
 
     users = User.query.all()
+    settings = Settings.query.get_or_404(1)
 
     return render_template('characters.html',
-                           users=users)
+                           users=users,
+                           settings=settings)
 
 
 # each character
@@ -36,6 +38,7 @@ def character(user_id):
     profile = user.profile
     questions = user.questions.all()
     evolutions = user.evolutions.all()
+    settings = Settings.query.get_or_404(1)
 
     return render_template('character.html',
                            user=user,
@@ -43,7 +46,8 @@ def character(user_id):
                            description=description,
                            profile=profile,
                            questions=questions,
-                           evolutions=evolutions)
+                           evolutions=evolutions,
+                           settings=settings)
 
 
 # team
