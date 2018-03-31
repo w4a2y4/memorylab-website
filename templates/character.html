@@ -30,6 +30,11 @@
             </div>
             <p>{{description}}</p>
         </div>
+        <ul>
+            {%for l in links%}
+            <li><a href="{{l.link}}">{{l.title}}</a></li>
+            {%endfor%}
+        </ul>
     </div>
     {% else %}
     <h2>人 格 {{user.id}} 號</h2>

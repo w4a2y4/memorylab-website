@@ -22,7 +22,7 @@ app.config['BASIC_AUTH_PASSWORD'] = '0000'
 basic_auth = BasicAuth(app)
 
 # add Admin modelview
-from models import db, User, Question, Team, Evolution, TestUser, Settings
+from models import db, User, Link, Question, Team, Evolution, TestUser, Settings
 
 class AuthException(HTTPException):
     def __init__(self, message):
@@ -157,6 +157,7 @@ class QuestionAdmin(AdminView):
 
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UserAdmin(User, db.session))
+admin.add_view(AdminView(Link, db.session))
 admin.add_view(QuestionAdmin(Question, db.session))
 admin.add_view(EvolutionAdmin(Evolution, db.session))
 admin.add_view(AdminView(Team, db.session))
