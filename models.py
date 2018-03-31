@@ -24,12 +24,31 @@ class User(db.Model):
         backref='user',
         lazy='dynamic'
     )
+    links = db.relationship(
+        'Link',
+        backref='user',
+        lazy='dynamic'
+    )
 
     def __init__(self, name=''):
         self.name = name
 
     def __repr__(self):
         return '<User %r>' % self.name
+
+
+class Link(db.Model):
+    __tablename__ = "link"
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), default='')
+    url = db.Column(db.String(300), default='#')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    def __init__(self, title='', url='#'):
+        self.title = title
+        self.url = url
+
+    def __repr__(self):
+        return '<Link %r>' % ( self.title )
 
 
 class Question(db.Model):

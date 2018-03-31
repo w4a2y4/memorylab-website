@@ -1,3 +1,18 @@
+li a{
+    text-decoration: none;
+    color: #9DC394;
+    font-family: "柔源l";
+    letter-spacing: 3px;
+    padding-left: 5px;
+}
+
+ul {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-left: 20px;
+    list-style-image: url(../favicon.ico);
+}
+
 #toHide {
     width: 75vw;
     padding: 10px;

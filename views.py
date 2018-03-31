@@ -1,6 +1,6 @@
 from flask import render_template
 from main import app
-from models import db, User, Question, Team, TestUser, Settings
+from models import db, User, Link, Question, Team, TestUser, Settings
 import urllib.request
 import json
 
@@ -36,6 +36,7 @@ def character(user_id):
     name = user.name
     description = user.description
     profile = user.profile
+    links = user.links.all()
     questions = user.questions.filter(Question.path != '')
     evolutions = user.evolutions.all()
     settings = Settings.query.get_or_404(1)
@@ -45,6 +46,7 @@ def character(user_id):
                            name=name,
                            description=description,
                            profile=profile,
+                           links=links,
                            questions=questions,
                            evolutions=evolutions,
                            settings=settings)
