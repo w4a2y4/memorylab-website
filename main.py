@@ -22,7 +22,7 @@ app.config['BASIC_AUTH_PASSWORD'] = '0000'
 basic_auth = BasicAuth(app)
 
 # add Admin modelview
-from models import db, User, Question, Team, Evolution, TestUser
+from models import db, User, Question, Team, Evolution, TestUser, Settings
 
 class AuthException(HTTPException):
     def __init__(self, message):
@@ -136,6 +136,7 @@ class EvolutionAdmin(AdminView):
                                       thumbnail_size=(100, 100, True))
     }
 
+
 class QuestionAdmin(AdminView):
 
     column_filters = ('user',)
@@ -160,6 +161,7 @@ admin.add_view(QuestionAdmin(Question, db.session))
 admin.add_view(EvolutionAdmin(Evolution, db.session))
 admin.add_view(AdminView(Team, db.session))
 admin.add_view(AdminView(TestUser, db.session))
+admin.add_view(AdminView(Settings, db.session))
 
 # Import the views module
 from views import *
@@ -181,7 +183,6 @@ log.addHandler(h)
 
 # to change
 HOST = "https://host.io"
-
 
 # Start at 12:30 
 # @sched.scheduled_job('cron', hour='12', minute='30')
@@ -258,7 +259,7 @@ class Config(object):
 if __name__ == '__main__':
     scheduler = APScheduler()
     app.config.from_object(Config()) 
-    scheduler.init_app(app)  
+    scheduler.init_app(app)
     scheduler.start()
     app.run()
 
