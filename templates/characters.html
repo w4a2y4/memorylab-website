@@ -36,6 +36,7 @@
         </p>
     </div>
 
+    {% if settings.start %}
     <h2>• 基 礎 人 格 •</h2>
 
     <div id="characters">
@@ -53,8 +54,11 @@
         </div>
         {% endfor %}
     </div>
-
     <div id="footer"></div>
+    {% else %}
+    <img src="./../static/img/footer.png" style="width: 80vw; margin-top: -30%;">
+    {% endif %}
+
     <script src="{{ url_for('static', filename = 'js/common.js') }}"></script>
 
 </body>

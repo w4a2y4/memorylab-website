@@ -20,6 +20,7 @@
     {% import 'header.html' as header %}
     {{ header.header(' > 人格重曝', '../') }}
 
+    {% if settings.end %}
     <!-- 解鎖前要隱藏的部分 -->
     <div id="toHide">
         <div id="info">
@@ -30,6 +31,9 @@
             <p>{{description}}</p>
         </div>
     </div>
+    {% else %}
+    <h2>人 格 {{user.id}} 號</h2>
+    {% endif %}
 
     <!-- 人格演進 -->
     <div id="evolution">
@@ -43,24 +47,28 @@
     </div>
 
     <!-- 實驗歷史 -->
+    {% if settings.start %}
     <div id="history">
         {%for q in questions%}
-            {% if loop.index == 6 %}
-                <div class="divider">
-                    <div></div>
+            {% if ( settings.end ) or ( loop.length - loop.index > 4 ) %}
+                {% if loop.index == 6 %}
+                    <div class="divider">
+                        <div></div>
+                    </div>
+                {% endif %}
+                <div class="quest" id="quest{{loop.index}}">
+                    <div class="img_container">
+                        <img src="./../static/questions/{{q.path}}">
+                    </div>
+                    <div class="content">
+                        <h2>Q{{loop.index}}.</h2>
+                        <p>{{q.description}}</p>
+                    </div>
                 </div>
             {% endif %}
-            <div class="quest" id="quest{{loop.index}}">
-                <div class="img_container">
-                    <img src="./../static/questions/{{q.path}}">
-                </div>
-                <div class="content">
-                    <h2>Q{{loop.index}}.</h2>
-                    <p>{{q.description}}</p>
-                </div>
-            </div>
         {%endfor%}
     </div>
+    {% endif %}
 
     <script>
         var controller = new ScrollMagic.Controller();

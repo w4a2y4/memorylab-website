@@ -82,6 +82,7 @@ class Team(db.Model):
     def __repr__(self):
         return '<Team %r %r %r %r>' % (self.name ,self.text,self.picture_url,self.type_num)
 
+
 class TestUser(db.Model):
     __tablename__ = 'testuser'
     id = db.Column(db.Integer, primary_key=True)
@@ -101,3 +102,10 @@ class TestUser(db.Model):
         self.sequence = json.dumps(id_list)
     def __repr__(self):
         return '<TestUser %r>' % self.fb_id
+
+
+class Settings(db.Model):
+    __tablename__ = 'settings'
+    id = db.Column(db.Integer, primary_key=True)
+    start = db.Column(db.Boolean, default=False)
+    end = db.Column(db.Boolean, default=False)

@@ -1,12 +1,10 @@
 from flask import render_template
 from main import app
-from models import db, User, Question, Team, TestUser
+from models import db, User, Question, Team, TestUser, Settings
 import urllib.request
 import json
 
 # home page
-
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -23,9 +21,11 @@ def flow():
 def characters():
 
     users = User.query.all()
+    settings = Settings.query.get_or_404(1)
 
     return render_template('characters.html',
-                           users=users)
+                           users=users,
+                           settings=settings)
 
 
 # each character
@@ -36,8 +36,9 @@ def character(user_id):
     name = user.name
     description = user.description
     profile = user.profile
-    questions = user.questions.all()
+    questions = user.questions.filter(Question.path != '')
     evolutions = user.evolutions.all()
+    settings = Settings.query.get_or_404(1)
 
     return render_template('character.html',
                            user=user,
@@ -45,7 +46,8 @@ def character(user_id):
                            description=description,
                            profile=profile,
                            questions=questions,
-                           evolutions=evolutions)
+                           evolutions=evolutions,
+                           settings=settings)
 
 
 # team
