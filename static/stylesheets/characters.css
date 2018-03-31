@@ -31,6 +31,7 @@
 
 .profile {
     border: white 5px solid;
+    background-color: #1F2020;
     height: 180px;
     width: 180px;
     display: flex;
