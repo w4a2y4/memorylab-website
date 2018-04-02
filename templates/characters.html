@@ -47,13 +47,13 @@
     <h2>• 基 礎 人 格 •</h2>
 
     <div id="characters">
-        {% for user in users%}
+        {% for user in users %}
         <div class="user">
             <a href="character/{{user.id}}">
             <div class="profile">
                 {% for e in user.evolutions %}
                     {% if loop.last %}
-                        <img src="./../static/evolutions/{{e.path}}">
+                        <img src="./static/evolutions/{{e.path}}">
                     {% endif %}
                 {% endfor %}
             </div>
@@ -63,7 +63,7 @@
     </div>
     <div id="footer"></div>
     {% else %}
-    <img src="./../static/img/footer.png" style="width: 80vw; margin-top: -30%;">
+    <img src="/static/img/footer.png" style="width: 80vw; margin-top: -30%;">
     {% endif %}
 
     <script src="{{ url_for('static', filename = 'js/common.js') }}"></script>

@@ -26,7 +26,7 @@
         <div id="info">
             <h2>{{name}}</h2>
             <div id="profile">
-                <img src="./../static/profile/{{profile}}">
+                <img src="/static/profile/{{profile}}">
             </div>
             <p>{{description}}</p>
         </div>
@@ -45,7 +45,7 @@
     <!-- 人格演進 -->
     <div id="evolution">
         {%for e in evolutions%}
-            <img id="ev{{loop.index}}" src="./../static/evolutions/{{e.path}}">
+            <img id="ev{{loop.index}}" src="/static/evolutions/{{e.path}}">
         {%endfor%}
     </div>
 
@@ -65,7 +65,7 @@
                 {% endif %}
                 <div class="quest" id="quest{{loop.index}}">
                     <div class="img_container">
-                        <img src="./../static/questions/{{q.path}}">
+                        <img src="/static/questions/{{q.path}}">
                     </div>
                     <div class="content">
                         <h2>Q{{loop.index}}.</h2>

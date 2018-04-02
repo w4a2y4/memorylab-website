@@ -108,7 +108,7 @@ class TestUser(db.Model):
     name = db.Column(db.String(50), default='')
     fb_id = db.Column(db.String(50), unique=True)
     tested = db.Column(db.Boolean, default=False)
-    sequence = db.Column(db.String(1024), default='')
+    sequence = db.Column(db.String(1024))
     answering = db.Column(db.Integer, default = None)
     test_times = db.Column(db.Integer, default = 0)
     # test_answer = db.relationship("TestAnswer", backref="testuser")

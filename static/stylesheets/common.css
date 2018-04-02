@@ -227,3 +227,33 @@ p {
     color: #BEBEBE;
 }
 
+
+form {
+color: whitesmoke;
+}
+
+#file-upload {
+position: absolute;
+left: -9999px;
+}
+
+label[for="file-upload"] {
+padding: 0.5em;
+display: inline-block;
+background: #623475;
+cursor: pointer;
+}
+label[for="file-upload"]:hover {
+background: #6b3880;
+}
+
+#filename {
+padding: 0.5em;
+width: 150px;
+white-space: nowrap;
+overflow: hidden;
+background: #804399;
+}
+
+
+  
