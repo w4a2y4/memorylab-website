@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/common_phone.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/index.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:400px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/index_phone.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>記憶實驗所</title>
+</head>
+
+<body>
+
+    {% import 'header.html' as header %} {{ header.header(' > 延續人格', '../') }}
+
+    <div id="description" style="text-align: center;">
+        {% if upload %}
+        <h2 style="line-height:3em">上傳完成！</h2>
+        {% endif %}
+        <h1>嗨，{{name}}！</h1>
+        <h2>• 今 日 人 格 •</h2>
+        {% for img in images %}
+        <img src="/static/questions/{{img.path}}" style="max-width: 100%;">
+        <p>{{img.description}}</p>
+        <br>
+        {% endfor %}
+
+        {% if not tested %}
+        <h1>那麼，回答今日的人格吧。</h1>
+        <h2>Question. {{question}}</h2>
+        <form method="post" enctype="multipart/form-data" action="">
+            <span id="filename">選擇你的人格相片</span>
+            <label for="file-upload">瀏覽
+                <input type="file" name="photo" id="file-upload">
+            </label>
+            <button type="submit">送出人格片段</button>
+        </form>
+        {% endif %}
+    </div>
+
+    <script src="{{ url_for('static', filename = 'js/common.js') }}"></script>
+</body>
+
+</html>

@@ -1,6 +1,5 @@
 import os
 import os.path as op
-import random
 
 from flask import Flask, Response, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
@@ -183,20 +182,39 @@ h = logging.StreamHandler()
 h.setFormatter(fmt)
 log.addHandler(h)
 
+# to change
+HOST = "https://host.io"
+
 # Start at 12:30 
 # @sched.scheduled_job('cron', hour='12', minute='30')
-# Set all test user's question
-def start_all_task():
+def send_all_task():
     # log("====send all====")
     testUsers = TestUser.query.all()
     for u in testUsers:
+        send_message(u.fb_id, "嗨！這是某個人的人格：")
+        seq = json.loads(u.sequence)
+        user = User.query.get(seq[u.test_times])
+        q_filter = Question.query.filter(Question.user==user, Question.path != '').order_by("id desc").limit(5).all()
+        questions = random.sample(list(q_filter), 5)
+        for q in questions:
+            send_image(u.fb_id, HOST + "/static/questions/" + q.path)
+        
         empty_questions = Question.query.filter_by(path='')
         e_question = empty_questions[random.randrange(0,empty_questions.count())]
         e_question.path = "Answering..."
-        # text = e_question.description
+        text = e_question.description
         u.answering = e_question.id # Set the question testuser is answering
+        send_message(u.fb_id, "那麼，讓我來問你一個問題吧：" + text)
         db.session.commit()
         
+
+# Notice at 19:30 
+# @sched.scheduled_job('cron', hour='19', minute='30')
+def notice_for_tester():
+    # log("====notice====")
+    testUser = TestUser.query.filter_by(tested=False)
+    for u in testUser:
+        send_message(u.fb_id, "快來回答吧！")
 
 # End at 24:30 (00:30)
 # @sched.scheduled_job('cron', hour='00', minute='30')
@@ -211,21 +229,30 @@ def end_for_test():
 class Config(object):  
     JOBS = [{  
                'id':'job1',  
-               'func':'main:start_all_task',  
+               'func':'main:send_all_task',  
                'args': '',  
                'trigger': {  
                     'type': 'cron',  
-                    'hour':'00',  
+                    'hour':'12',  
                     'minute':'30',  
                 }
             }, {  
+               'id':'job2',  
+               'func':'main:notice_for_tester',  
+               'args': '',  
+               'trigger': {  
+                    'type': 'cron',  
+                    'hour':'19',  
+                    'minute':'30',    
+                }
+            },  {  
                'id':'job3',  
                'func':'main:end_for_test',  
                'args': '',  
                'trigger': {  
                     'type': 'cron',  
-                    'hour':'12',  
-                    'minute':'44',    
+                    'hour':'00',  
+                    'minute':'30',    
                 }
             }]  
     SCHEDULER_API_ENABLED = True

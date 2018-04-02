@@ -1,10 +1,19 @@
-from flask import render_template
+from flask import render_template, redirect, request
+from flask_uploads import UploadSet, configure_uploads, IMAGES
+from werkzeug import secure_filename
 from main import app
 from models import db, User, Link, Question, Team, TestUser, Settings
 import urllib.request
 import json
 
+photos = UploadSet('photos', IMAGES)
+
+app.config['UPLOADED_PHOTOS_DEST'] = 'static/questions'
+configure_uploads(app, photos)
+
 # home page
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -79,44 +88,33 @@ def team():
     return render_template('team.html', teams=teams, boss=boss, it=it, twoD=twoD, threeD=threeD, anim=anim, acent=acent, ui=ui, elect=elect, out=out)
 
 
-@app.route('/chatbot', methods=['GET'])
-def verify():
-    if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
-        if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
-            return "Verification token mismatch", 403
-        return request.args["hub.challenge"], 200
-    return "I'm chatbot. owo)/", 200
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+    return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-@app.route('/chatbot', methods=['POST'])
-def webhook():
-    # endpoint for processing incoming messaging events
-    data = request.get_json()
-    # log(data)
-    for entry in data["entry"]:
-        for messaging_event in entry["messaging"]:
-            if messaging_event.get("message"):
-                message = messaging_event["message"]
-                sender_id = messaging_event["sender"]["id"]
-                recipient_id = messaging_event["recipient"]["id"]
-                u = TestUser.query.filter_by(fb_id=sender_id).first()
-                if message.get('attachments'):
-                    if u.tested == False:  # haven't answer
-                        send_message(sender_id, "收到你的答案了～")
-                        u.tested = True
-                        for attachments in message['attachments']:
-                            url = attachments['payload']['url']
-                            urllib.request.urlretrieve(
-                                url, "static/questions/")
-                            sequence = json.loads(u.sequence)
-                            q = Question.query.filter_by(
-                                id=u.answering).first()
-                            q.path = url[url.rfind("/")+1:url.find("?")]
-                    else:
-                        send_message(sender_id, "欸欸，你已經回答過囉")
-                    db.session.commit()
-                else:
-                    message_text = message["text"]
-                    send_message(sender_id, "嗨！這裡是記憶實驗所")
-                    # send_message(sender_id, "喵。")
-    return "ok", 200
+@app.route('/answer/<id>', methods=['GET', 'POST'])
+def answer(id):
+    if request.method == 'POST' and 'photo' in request.files:
+        u = TestUser.query.filter_by(fb_id=id).first()
+        filename = photos.save(request.files['photo'])
+        u.tested = True
+
+        q = Question.query.filter_by(
+	                                id=u.answering).first()
+        q.path = filename
+        db.session.commit()
+        return redirect(request.base_url + "?upload")
+    if request.method == 'GET':
+        u = TestUser.query.filter_by(fb_id=id).first()
+        seq = json.loads(u.sequence)
+        user = User.query.get(seq[u.test_times])
+        q_filter = Question.query.filter(
+            Question.user == user, Question.path != '').order_by("id desc").limit(5).all()
+        questions = list(q_filter)
+        question = Question.query.get_or_404(u.answering).description
+        opt_param = request.args.get("upload")
+        upload = False
+        if opt_param is not None:
+            upload = True
+        return render_template('answer.html', name=u.name, images=questions, question=question, upload=upload, tested = u.tested)
