@@ -111,7 +111,6 @@ class TestUser(db.Model):
     sequence = db.Column(db.String(1024))
     answering = db.Column(db.Integer, default = None)
     test_times = db.Column(db.Integer, default = 0)
-    # test_answer = db.relationship("TestAnswer", backref="testuser")
     def __init__(self, name = '', fb_id=''):
         self.name = name
         self.fb_id = fb_id
