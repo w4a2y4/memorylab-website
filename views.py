@@ -2,7 +2,7 @@ from flask import render_template, redirect, request
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 from werkzeug import secure_filename
 from main import app
-from models import db, User, Link, Question, Team, TestUser, Settings
+from models import db, User, Link, Question, Team, TestUser, Settings, Huanan
 import urllib.request
 import json
 
@@ -86,6 +86,14 @@ def team():
     out = Team.query.filter_by(type_num=8).all()
 
     return render_template('team.html', teams=teams, boss=boss, it=it, twoD=twoD, threeD=threeD, anim=anim, acent=acent, ui=ui, elect=elect, out=out)
+
+
+# HuaNan daddy
+@app.route('/huanan')
+def huanan():
+
+    pics = Huanan.query.all()
+    return render_template('huanan.html', pics=pics)
 
 
 def allowed_file(filename):
