@@ -39,20 +39,20 @@
                         <img src="/static/huanan/{{p.path}}">
                         <p>{{p.description}}</p>
                     </div>
-                    <div class="triangle"></div>
+                    <!-- <div class="triangle"></div> -->
                 </div>
                 {% endif %}
             {%endfor%}
             </div>
 
-            <div id="divider">
-            </div>
+            <!-- <div id="divider">
+            </div> -->
 
             <div class="col" id="right_col">
             {%for p in pics%}
                 {% if (loop.index+1) is divisibleby(2) %}
                 <div>
-                    <div class="triangle"></div>
+                    <!-- <div class="triangle"></div> -->
                     <div class="card">
                         <img src="/static/huanan/{{p.path}}">
                         <p>{{p.description}}</p>
