@@ -3,9 +3,11 @@ from flask_uploads import UploadSet, configure_uploads, IMAGES
 from werkzeug import secure_filename
 from main import app
 from models import db, User, Link, Question, Team, TestUser, Settings, Huanan
+from multiprocessing import Value
 import urllib.request
 import json
 
+counter = Value('i', 0)
 photos = UploadSet('photos', IMAGES)
 
 app.config['UPLOADED_PHOTOS_DEST'] = 'static/questions'
@@ -93,7 +95,9 @@ def team():
 def huanan():
 
     pics = Huanan.query.all()
-    return render_template('huanan.html', pics=pics)
+    with counter.get_lock():
+        counter.value += 1
+    return render_template('huanan.html', pics=pics, count=counter.value)
 
 
 def allowed_file(filename):
