@@ -12,6 +12,11 @@
 </head>
 <body>
 
+    <video autoplay loop="loop">
+        <source src="{{ url_for('static', filename = 'hn.mp4') }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div id="banner">
         <div>
             <h1>華 南 印 象</h1>
@@ -23,39 +28,41 @@
         </div>
     </div>
 
-    <div id="main_container">
+    <div id="timeline">
+        <div id="main_container">
 
-        <div class="col" id="left_col">
-        {%for p in pics%}
-            {% if loop.index is divisibleby(2) %}
-            <div>
-                <div class="card">
-                    <img src="/static/huanan/{{p.path}}">
-                    <p>{{p.description}}</p>
+            <div class="col" id="left_col">
+            {%for p in pics%}
+                {% if loop.index is divisibleby(2) %}
+                <div>
+                    <div class="card">
+                        <img src="/static/huanan/{{p.path}}">
+                        <p>{{p.description}}</p>
+                    </div>
+                    <div class="triangle"></div>
                 </div>
-                <div class="triangle"></div>
+                {% endif %}
+            {%endfor%}
             </div>
-            {% endif %}
-        {%endfor%}
-        </div>
 
-        <div id="divider">
-        </div>
+            <div id="divider">
+            </div>
 
-        <div class="col" id="right_col">
-        {%for p in pics%}
-            {% if (loop.index+1) is divisibleby(2) %}
-            <div>
-                <div class="triangle"></div>
-                <div class="card">
-                    <img src="/static/huanan/{{p.path}}">
-                    <p>{{p.description}}</p>
+            <div class="col" id="right_col">
+            {%for p in pics%}
+                {% if (loop.index+1) is divisibleby(2) %}
+                <div>
+                    <div class="triangle"></div>
+                    <div class="card">
+                        <img src="/static/huanan/{{p.path}}">
+                        <p>{{p.description}}</p>
+                    </div>
                 </div>
+                {% endif %}
+            {%endfor%}
             </div>
-            {% endif %}
-        {%endfor%}
-        </div>
 
+        </div>
     </div>
 
     <div id="footer">
