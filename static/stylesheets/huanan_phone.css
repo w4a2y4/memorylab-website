@@ -1,0 +1,74 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family:'Noto Sans TC',sans-serif;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: 100%;
+}
+
+video {
+    width: 100vw;
+    margin: 0 auto;
+    position: fixed;
+    z-index: -1;
+}
+
+#banner {
+    width: 100%;
+    height: 56vw;
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    text-align: center;
+    color: white;
+}
+
+#left_col {
+    display: none;
+}
+
+#right_col {
+    display: none;
+}
+
+#mob_col {
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.card {
+    background-color: white;
+    border: solid black 3px;
+    padding: 25px;
+    margin: 25px; 
+}
+
+.card p {
+    margin-bottom: 0;
+}
+
+#footer {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: grey;
+}

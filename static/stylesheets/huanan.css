@@ -18,10 +18,17 @@ body {
 
 img {
     width: 100%;
+    margin: 0 auto;
+}
+
+#vid {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
 video {
-    max-width: 120vw;
+    height: 100vh;
     margin: 0 auto;
     position: fixed;
     z-index: -1;
@@ -58,14 +65,22 @@ video {
 
 .col {
     max-width: 500px;
-    margin: 25px;
+    margin: 3vw;
+}
+
+#mob_col {
+    display: none;
 }
 
 .card {
     background-color: white;
     border: solid black 3px;
     padding: 25px;
-    margin-bottom: 50px; 
+    margin-bottom: 6vw; 
+}
+
+.card p {
+    margin-bottom: 0;
 }
 
 #footer {
