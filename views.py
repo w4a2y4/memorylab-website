@@ -4,10 +4,12 @@ from werkzeug import secure_filename
 from main import app
 from models import db, User, Link, Question, Team, TestUser, Settings, Huanan
 from multiprocessing import Value
+from random import randint
+
 import urllib.request
 import json
 
-counter = Value('i', 0)
+counter = Value('i', 500)
 photos = UploadSet('photos', IMAGES)
 
 app.config['UPLOADED_PHOTOS_DEST'] = 'static/questions'
@@ -96,7 +98,7 @@ def huanan():
 
     pics = Huanan.query.all()
     with counter.get_lock():
-        counter.value += 1
+        counter.value += randint(1, 5)
     return render_template('huanan.html', pics=pics, count=counter.value)
 
 
