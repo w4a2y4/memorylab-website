@@ -23,7 +23,7 @@ app.config['BASIC_AUTH_PASSWORD'] = '0000'
 basic_auth = BasicAuth(app)
 
 # add Admin modelview
-from models import db, User, Link, Question, Team, Evolution, TestUser, Settings
+from models import db, User, Link, Question, Team, Evolution, TestUser, Settings, Huanan
 
 class AuthException(HTTPException):
     def __init__(self, message):
@@ -35,6 +35,7 @@ class AuthException(HTTPException):
 evo_path = op.join(op.dirname(__file__), 'static/evolutions')
 quest_path = op.join(op.dirname(__file__), 'static/questions')
 prof_path = op.join(op.dirname(__file__), 'static/profile')
+huanan_path = op.join(op.dirname(__file__), 'static/huanan')
 
 try:
     os.mkdir(evo_path)
@@ -42,6 +43,10 @@ except OSError:
     pass
 try:
     os.mkdir(quest_path)
+except OSError:
+    pass
+try:
+    os.mkdir(huanan_path)
 except OSError:
     pass
 
@@ -86,6 +91,21 @@ def del_prof(mapper, connection, target):
         # Delete thumbnail
         try:
             os.remove(op.join(prof_path,
+                              form.thumbgen_filename(target.path)))
+        except OSError:
+            pass
+
+@listens_for(Huanan, 'after_delete')
+def del_huanan(mapper, connection, target):
+    if target.path:
+        try:
+            os.remove(op.join(huanan_path, target.path))
+        except OSError:
+            pass
+
+        # Delete thumbnail
+        try:
+            os.remove(op.join(huanan_path,
                               form.thumbgen_filename(target.path)))
         except OSError:
             pass
@@ -156,11 +176,28 @@ class QuestionAdmin(AdminView):
     }
 
 
+class HuananAdmin(AdminView):
+
+    def _list_thumbnail(view, context, model, name):
+        if not model.path:
+            return ''
+        fname = 'huanan/' + form.thumbgen_filename(model.path)
+        return Markup('<img src="%s">' % url_for('static',
+                                                 filename=fname))
+    column_formatters = {'path': _list_thumbnail}
+    form_extra_fields = {
+        'path': form.ImageUploadField('Huanan',
+                                      base_path=huanan_path,
+                                      thumbnail_size=(100, 100, True))
+    }
+
+
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UserAdmin(User, db.session))
 admin.add_view(AdminView(Link, db.session))
 admin.add_view(QuestionAdmin(Question, db.session))
 admin.add_view(EvolutionAdmin(Evolution, db.session))
+admin.add_view(HuananAdmin(Huanan, db.session))
 admin.add_view(AdminView(Team, db.session))
 admin.add_view(AdminView(TestUser, db.session))
 admin.add_view(AdminView(Settings, db.session))

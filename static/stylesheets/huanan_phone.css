@@ -1,0 +1,105 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family:'Noto Sans TC',sans-serif;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: 100%;
+}
+
+video {
+    width: 100vw;
+    margin: 0 auto;
+    position: fixed;
+    z-index: -1;
+}
+
+#banner {
+    width: 100%;
+    height: 56vw;
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    text-align: center;
+    color: white;
+}
+
+@font-face {
+    font-family: "柔源P";
+    src: url(GenJyuuGothic-P-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "柔源l";
+    src: url(GenJyuuGothic-Light.ttf);
+}
+
+#banner h1 {
+    font-family: "柔源P";
+    font-size: 3em;
+    margin: 0 auto;
+}
+
+#banner p {
+    margin: 0 auto;
+    padding: 5px;
+}
+
+#banner span {
+    font-family: "柔源l";
+    font-size: 1em;
+    background-color: rgba(157, 195, 148, 0.9);
+    letter-spacing: 2px;
+    padding: 0px 5px 0px 5px;
+}
+
+#left_col {
+    display: none;
+}
+
+#right_col {
+    display: none;
+}
+
+#mob_col {
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    padding-top: 20px; 
+}
+
+.card {
+    background-color: white;
+    border: solid black 3px;
+    padding: 25px;
+    margin: 25px; 
+}
+
+.card p {
+    margin-bottom: 0;
+}
+
+#footer {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: grey;
+}

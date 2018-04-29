@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" media="screen and (min-width:500px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/huanan.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:500px)" type="text/css" href="{{ url_for('static', filename = 'stylesheets/huanan_phone.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>華 南 印 象</title>
+</head>
+<body>
+    <div id="vid">
+        <video autoplay loop="loop">
+            <source src="{{ url_for('static', filename = 'hn.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div id="banner">
+        <div>
+            <h1>華 南 印 象</h1>
+            <p><span> 華南台大分行 </span></p>
+            <p><span> 讓你印象最深刻的是什麼？ </span></p>
+        </div>
+    </div>
+
+    <div id="timeline">
+        <div id="main_container">
+
+            <div class="col" id="left_col">
+            {%for p in pics%}
+                {% if loop.index is divisibleby(2) %}
+                <div>
+                    <div class="card">
+                        <img src="/static/huanan/{{p.path}}">
+                        <p>{{p.description}}</p>
+                    </div>
+                    <!-- <div class="triangle"></div> -->
+                </div>
+                {% endif %}
+            {%endfor%}
+            </div>
+
+            <div class="col" id="right_col">
+            {%for p in pics%}
+                {% if (loop.index+1) is divisibleby(2) %}
+                <div>
+                    <!-- <div class="triangle"></div> -->
+                    <div class="card">
+                        <img src="/static/huanan/{{p.path}}">
+                        <p>{{p.description}}</p>
+                    </div>
+                </div>
+                {% endif %}
+            {%endfor%}
+            </div>
+
+            <div class="col" id="mob_col">
+            {%for p in pics%}
+                <div>
+                    <div class="card">
+                        <img src="/static/huanan/{{p.path}}">
+                        <p>{{p.description}}</p>
+                    </div>
+                </div>
+            {%endfor%}
+            </div>
+
+        </div>
+    </div>
+
+    <div id="footer">
+        <p>瀏 覽 人 次 : {{count}}</p>
+    </div>
+
+</body>
+</html>

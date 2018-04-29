@@ -9,6 +9,18 @@ def shift(seq, n=0):
     a = n % len(seq)
     return seq[-a:] + seq[:-a]
 
+class Huanan(db.Model):
+    __tablename__ = "huanan"
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.Text, default='')
+    path = db.Column(db.Unicode(128))
+    def __init__(self, description='', path=''):
+        self.description = description
+        self.path = path
+
+    def __repr__(self):
+        return '<Huanan %r %r>' % ( self.description, self.path)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, default='')
