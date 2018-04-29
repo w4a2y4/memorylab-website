@@ -37,6 +37,36 @@ video {
     color: white;
 }
 
+@font-face {
+    font-family: "柔源P";
+    src: url(GenJyuuGothic-P-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "柔源l";
+    src: url(GenJyuuGothic-Light.ttf);
+}
+
+#banner h1 {
+    font-family: "柔源P";
+    font-size: 3em;
+    margin: 0 auto;
+}
+
+#banner p {
+    margin: 0 auto;
+    padding: 5px;
+}
+
+#banner span {
+    font-family: "柔源l";
+    font-size: 1em;
+    background-color: rgba(157, 195, 148, 0.9);
+    letter-spacing: 2px;
+    padding: 0px 5px 0px 5px;
+}
+
 #left_col {
     display: none;
 }
@@ -49,6 +79,7 @@ video {
     width: 100%;
     margin: 0 auto;
     background-color: white;
+    padding-top: 20px; 
 }
 
 .card {
