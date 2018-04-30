@@ -27,6 +27,9 @@ ul {
     overflow: hidden;
     background-color: #D9E0E7;
     margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #info {
@@ -38,7 +41,8 @@ ul {
 }
 
 #profile img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #evolution {

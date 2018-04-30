@@ -9,7 +9,7 @@ from random import randint
 import urllib.request
 import json
 
-counter = Value('i', 500)
+counter = Value('i', 2411)
 photos = UploadSet('photos', IMAGES)
 
 app.config['UPLOADED_PHOTOS_DEST'] = 'static/questions'
@@ -98,7 +98,7 @@ def huanan():
 
     pics = Huanan.query.all()
     with counter.get_lock():
-        counter.value += randint(1, 5)
+        counter.value += 1
     return render_template('huanan.html', pics=pics, count=counter.value)
 
 
